@@ -1,0 +1,12 @@
+---
+description: ModusFi website design and content rules
+alwaysApply: true
+---
+- Brand wordmark is lowercase `modusfi.`. Official name in prose is ModusFi.
+- Primary colours: navy #101D32, turquoise #00B3C6, light background #F5F7FA.
+- Position as a technology engineering company with financial services specialisation, not solely a fintech or AI company.
+- Keep typography confident, concise and professional; avoid hype and unsupported claims.
+- Do not create a Team page. About focuses on philosophy, delivery approach and experience.
+- Distinguish founder/team prior experience from ModusFi client deliveries.
+- Astro static-first; use client JavaScript only when justified. Ensure keyboard accessibility and reduced-motion support.
+- Do not introduce a database, authentication or CMS without a concrete requirement.

@@ -1,0 +1,8 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+interface Props {title:string;description:string}
+const {title,description}=Astro.props;
+---
+<!doctype html><html lang="en-GB"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="description" content={description}/><meta name="theme-color" content="#101D32"/><link rel="canonical" href={new URL(Astro.url.pathname,Astro.site)}/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><title>{title} | ModusFi</title></head><body><a href="#main" style="position:absolute;left:-9999px;top:8px;background:white;color:#101d32;padding:12px;z-index:99" onfocus="this.style.left='8px'" onblur="this.style.left='-9999px'">Skip to content</a><Header/><main id="main"><slot/></main><Footer/></body></html>

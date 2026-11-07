@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://modusfi.io/sitemap-index.xml
