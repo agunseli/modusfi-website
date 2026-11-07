@@ -1,0 +1,14 @@
+---
+description: ModusFi brand and visual design guidance
+globs: "**/*.{astro,css,svg}"
+alwaysApply: false
+---
+
+Follow `AGENTS.md` and `docs/design-system.md`.
+
+Brand: `modusfi.` wordmark; navy `#101D32`; turquoise `#00B3C6`.
+Typography: Manrope semibold (600) headings; Inter regular (400) body.
+
+Keep the established minimalist, enterprise-oriented aesthetic: white/light backgrounds, navy hero/footer, restrained turquoise accents, whitespace, clear hierarchy and modest rounding. Avoid heavy fonts, gratuitous gradients, busy decorative elements, generic fintech stock imagery and gratuitous animation.
+
+Do not redesign the homepage, replace approved imagery, change copy or introduce new colours without a task requiring it. Check desktop and narrow/mobile layouts. Use accessible contrast, keyboard focus and appropriate alt text.

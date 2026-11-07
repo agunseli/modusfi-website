@@ -1,0 +1,17 @@
+---
+description: Astro, TypeScript, CSS and maintainability conventions
+globs: "**/*.{astro,ts,tsx,js,mjs,css}"
+alwaysApply: false
+---
+
+Follow `AGENTS.md`.
+
+- Prefer clear, readable code over clever abstractions.
+- Use semantic HTML and meaningful names.
+- Keep Astro frontmatter concise; extract repeated UI into components only when useful.
+- Avoid inline styles for new reusable patterns when a class would be clearer; do not refactor unrelated existing styles.
+- Preserve established CSS selectors and page behaviour.
+- Format modified files using project Prettier configuration with `prettier-plugin-astro`.
+- Do not reformat unrelated files or add dependencies without a reason.
+- Avoid `any` where practical; use types for nontrivial data.
+- Ensure form handlers handle pending, success and error states without duplicate submissions.

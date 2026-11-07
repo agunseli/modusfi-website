@@ -1,0 +1,15 @@
+---
+description: Astro architecture, TypeScript, Tailwind and deployment conventions
+globs: "**/*.{astro,ts,tsx,js,mjs,css,json}"
+alwaysApply: false
+---
+
+Follow `AGENTS.md` and `docs/architecture.md`.
+
+- Astro static generation is the default; avoid client-side hydration unless justified.
+- Use existing `BaseLayout` and established site components/styles.
+- Tailwind CSS 4 is configured through `@tailwindcss/vite`; do not reintroduce the obsolete Astro Tailwind integration.
+- Keep dependencies minimal. No React, CMS, database or dedicated backend without approval.
+- Contact form server functionality should be compatible with Cloudflare Pages Functions or the chosen Cloudflare deployment model. Verify the deployment model before adding endpoint code.
+- Never place secrets in `public/`, client JavaScript or `PUBLIC_` environment variables.
+- Preserve Astro 7 compatibility; verify actual versions in `package.json`.

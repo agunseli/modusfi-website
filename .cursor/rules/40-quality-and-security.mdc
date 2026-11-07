@@ -1,0 +1,16 @@
+---
+description: Quality, accessibility, performance and security requirements
+alwaysApply: true
+---
+
+Follow `AGENTS.md`.
+
+- Validate server-side form input; never trust client validation alone.
+- Keep API keys and email provider tokens in Cloudflare secrets or equivalent server-side environment storage.
+- Avoid logging message bodies, email addresses or other submitted personal data.
+- Use spam protection and rate limiting as appropriate for a public form; handle errors without leaking internals.
+- Maintain semantic headings, labelled inputs, accessible status messages, keyboard focus and responsive layout.
+- Prefer lightweight static output, optimised images and minimal third-party scripts.
+- Run `bash scripts/ai-checks.sh` when available; state what passed, failed or was skipped.
+- Inspect `git diff` and avoid unrelated changes.
+- Do not commit, push, merge or delete branches without permission.

@@ -1,0 +1,10 @@
+---
+description: ModusFi project scope, positioning and content guardrails
+alwaysApply: true
+---
+
+Follow `AGENTS.md` as the primary shared instructions.
+
+ModusFi is a technology engineering consultancy with financial-services depth and applied-AI capability. Write British English and avoid inflated marketing language. Never invent clients, achievements, accreditations or case studies. Founders' prior experience is not automatically ModusFi company experience. Do not add a Team page unless requested.
+
+Inspect the current repository before assuming architecture, dependencies or file paths. Make focused changes and report checks actually run.
