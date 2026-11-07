@@ -1,5 +1,72 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const services=[['Software & Product Engineering','We design and develop sophisticated software products, from early-stage concepts to enterprise-grade platforms. Our expertise spans architecture, backend and frontend engineering, APIs, distributed systems and cloud-native applications.','Product architecture · SaaS platforms · Full-stack development · Systems integration'],['AI & Intelligent Automation','We engineer AI-enabled applications combining large language models, structured information, business rules and human oversight. We focus on practical solutions that improve how organisations analyse information, make decisions and operate.','LLM integration · Intelligent workflows · AI agents · Human-in-the-loop systems'],['Cloud & Platform Modernisation','We help organisations modernise existing applications, improve system architecture and establish secure, scalable foundations for future growth.','Cloud architecture · Legacy modernisation · DevSecOps · Operational resilience'],['Financial Technology Engineering','We combine practical banking, payments and Open Banking experience with modern software engineering to build secure and reliable financial systems.','Open Banking · Payments · Digital banking · Financial integrations']];
+const services = [
+  [
+    'Financial Technology Engineering',
+    'We combine practical banking, payments and Open Banking experience with modern software engineering to build secure and reliable financial systems.',
+    'Open Banking · Payments · Digital banking · Financial integrations',
+  ],
+  [
+    'Software & Product Engineering',
+    'We design and develop sophisticated software products, from early-stage concepts to enterprise-grade platforms. Our expertise spans architecture, backend and frontend engineering, APIs, distributed systems and cloud-native applications.',
+    'Product architecture · SaaS platforms · Full-stack development · Systems integration',
+  ],
+  [
+    'AI & Intelligent Automation',
+    'We engineer AI-enabled applications combining large language models, structured information, business rules and human oversight. We focus on practical solutions that improve how organisations analyse information, make decisions and operate.',
+    'LLM integration · Intelligent workflows · AI agents · Human-in-the-loop systems',
+  ],
+  [
+    'Cloud & Platform Modernisation',
+    'We help organisations modernise existing applications, improve system architecture and establish secure, scalable foundations for future growth.',
+    'Cloud architecture · Legacy modernisation · DevSecOps · Operational resilience',
+  ],
+];
 ---
-<BaseLayout title="Services" description="Explore ModusFi software engineering, AI, cloud modernisation and financial technology services."><section class="page-hero"><div class="container"><div class="eyebrow">Our services</div><h1>From strategy to working software.</h1><p>We help organisations turn complex technology requirements into secure, scalable and maintainable solutions.</p></div></section><section class="section"><div class="container simple-grid">{services.map((s,i)=><article class="content-card"><div class="eyebrow">0{i+1} / Service</div><h2 style="font-size:29px;letter-spacing:-.045em;margin:20px 0">{s[0]}</h2><p class="lead">{s[1]}</p><p class="muted" style="font-size:14px;line-height:1.8;margin-top:25px">{s[2]}</p></article>)}</div></section><section class="section" style="background:#edf5fa"><div class="container grid-two"><div><div class="eyebrow">Technology advisory</div><h2 class="heading">Practical guidance, hands-on expertise.</h2></div><div><p class="lead">Architecture reviews, technical discovery, engineering leadership and delivery planning grounded in real implementation experience.</p><a href="/contact" class="btn btn-dark">Discuss a project →</a></div></div></section></BaseLayout>
+
+<BaseLayout
+  title="Services"
+  description="Explore ModusFi software engineering, AI, cloud modernisation and financial technology services."
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow">Our services</div>
+      <h1>From strategy to working software.</h1>
+      <p>
+        We help organisations turn complex technology requirements into secure, scalable and
+        maintainable solutions.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container simple-grid">
+      {services.map((s, i) => (
+        <article class="content-card">
+          <div class="eyebrow">0{i + 1} / Service</div>
+          <h2 style="font-size:29px;letter-spacing:-.045em;margin:20px 0">{s[0]}</h2>
+          <p class="lead">{s[1]}</p>
+          <p class="muted" style="font-size:14px;line-height:1.8;margin-top:25px">
+            {s[2]}
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section" style="background:#edf5fa">
+    <div class="container grid-two">
+      <div>
+        <div class="eyebrow">Technology advisory</div>
+        <h2 class="heading">Practical guidance, hands-on expertise.</h2>
+      </div>
+      <div>
+        <p class="lead">
+          Architecture reviews, technical discovery, engineering leadership and delivery planning
+          grounded in real implementation experience.
+        </p>
+        <a href="/contact" class="btn btn-dark">
+          Discuss a project →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

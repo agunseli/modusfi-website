@@ -1,5 +1,68 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const areas=[['Open Banking & APIs','Payment initiation, account information services, consent journeys and secure integrations.'],['Payments & Transactions','Payment systems, routing, financial messaging and transaction workflows.'],['Digital & Core Banking','Digital channels, banking platforms, integration and modernisation.'],['Security & Resilience','Identity and access, secure APIs, encryption, auditability and operational resilience.'],['Applied AI','AI-assisted analysis, intelligent automation and evidence-driven workflows.'],['Platform Architecture','Distributed systems, cloud architecture, data and enterprise integration.']];
+const areas = [
+  [
+    'Open Banking & APIs',
+    'Payment initiation, account information services, consent journeys and secure integrations.',
+  ],
+  [
+    'Payments & Transactions',
+    'Payment systems, routing, financial messaging and transaction workflows.',
+  ],
+  ['Digital & Core Banking', 'Digital channels, banking platforms, integration and modernisation.'],
+  [
+    'Security & Resilience',
+    'Identity and access, secure APIs, encryption, auditability and operational resilience.',
+  ],
+  ['Applied AI', 'AI-assisted analysis, intelligent automation and evidence-driven workflows.'],
+  [
+    'Platform Architecture',
+    'Distributed systems, cloud architecture, data and enterprise integration.',
+  ],
+];
 ---
-<BaseLayout title="Expertise" description="Financial services technology expertise spanning Open Banking, payments, digital banking, security, applied AI and platform architecture."><section class="page-hero"><div class="container"><div class="eyebrow">Our expertise</div><h1>Deep knowledge where technology meets finance.</h1><p>Specialist financial services experience, supported by broad software and platform engineering capability.</p></div></section><section class="section"><div class="container simple-grid">{areas.map((a,i)=><article class="content-card"><div class="eyebrow">0{i+1} / Expertise</div><h2 style="font-size:27px;letter-spacing:-.04em;margin:18px 0">{a[0]}</h2><p class="lead">{a[1]}</p></article>)}</div></section><section class="section cta"><div class="container grid-two"><h2 class="heading">Specialist knowledge.<br/>Practical delivery.</h2><div><p class="lead" style="color:#d9e8f1">Explore how our engineering and financial services experience can support your next initiative.</p><a href="/contact" class="btn btn-primary">Let's talk →</a></div></div></section></BaseLayout>
+
+<BaseLayout
+  title="Expertise"
+  description="Financial services technology expertise spanning Open Banking, payments, digital banking, security, applied AI and platform architecture."
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow">Our expertise</div>
+      <h1>Deep knowledge where technology meets finance.</h1>
+      <p>
+        Specialist financial services experience, supported by broad software and platform
+        engineering capability.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container simple-grid">
+      {areas.map((a, i) => (
+        <article class="content-card">
+          <div class="eyebrow">0{i + 1} / Expertise</div>
+          <h2 style="font-size:27px;letter-spacing:-.04em;margin:18px 0">{a[0]}</h2>
+          <p class="lead">{a[1]}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section cta">
+    <div class="container grid-two">
+      <h2 class="heading">
+        Specialist knowledge.
+        <br />
+        Practical delivery.
+      </h2>
+      <div>
+        <p class="lead" style="color:#d9e8f1">
+          Explore how our engineering and financial services experience can support your next
+          initiative.
+        </p>
+        <a href="/contact" class="btn btn-primary">
+          Let's talk →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

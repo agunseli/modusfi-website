@@ -1,4 +1,57 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="About" description="Learn about ModusFi's engineering philosophy, delivery approach and financial technology experience."><section class="page-hero"><div class="container"><div class="eyebrow">About ModusFi</div><h1>Engineering with experience. Innovation with purpose.</h1><p>Technology is most valuable when it solves a meaningful business challenge — reliably, securely and sustainably.</p></div></section><section class="section"><div class="container grid-two"><div><div class="eyebrow">Our philosophy</div><h2 class="heading">Thoughtful architecture. Hands-on engineering.</h2></div><div><p class="lead">ModusFi brings together technology professionals with experience across financial technology, enterprise software engineering, digital platforms and applied AI.</p><p class="lead">We believe successful delivery requires more than choosing the right tools. It requires understanding the problem, making sound architectural decisions, and taking responsibility for quality, security and long-term maintainability.</p></div></div></section><section class="section" style="background:#edf5fa"><div class="container"><div class="eyebrow">How we work</div><h2 class="heading">A partnership from discovery to delivery.</h2><div class="process" style="margin-top:35px">{[['01','Understand'],['02','Architect'],['03','Engineer'],['04','Improve']].map(s=><div class="process-item"><div class="process-number">{s[0]}</div><strong>{s[1]}</strong></div>)}</div></div></section></BaseLayout>
+
+<BaseLayout
+  title="About"
+  description="Learn about ModusFi's engineering philosophy, delivery approach and financial technology experience."
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow">About ModusFi</div>
+      <h1>Engineering with experience. Innovation with purpose.</h1>
+      <p>
+        Technology is most valuable when it solves a meaningful business challenge — reliably,
+        securely and sustainably.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid-two">
+      <div>
+        <div class="eyebrow">Our philosophy</div>
+        <h2 class="heading">Thoughtful architecture. Hands-on engineering.</h2>
+      </div>
+      <div>
+        <p class="lead">
+          ModusFi brings together technology professionals with experience across financial
+          technology, enterprise software engineering, digital platforms and applied AI.
+        </p>
+        <p class="lead">
+          We believe successful delivery requires more than choosing the right tools. It requires
+          understanding the problem, making sound architectural decisions, and taking responsibility
+          for quality, security and long-term maintainability.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section" style="background:#edf5fa">
+    <div class="container">
+      <div class="eyebrow">How we work</div>
+      <h2 class="heading">A partnership from discovery to delivery.</h2>
+      <div class="process" style="margin-top:35px">
+        {[
+          ['01', 'Understand'],
+          ['02', 'Architect'],
+          ['03', 'Engineer'],
+          ['04', 'Improve'],
+        ].map((s) => (
+          <div class="process-item">
+            <div class="process-number">{s[0]}</div>
+            <strong>{s[1]}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

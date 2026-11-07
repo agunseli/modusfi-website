@@ -1,4 +1,59 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Contact" description="Start a conversation with ModusFi about software engineering, financial technology, cloud modernisation or AI."><section class="page-hero"><div class="container"><div class="eyebrow">Contact</div><h1>Let's start a conversation.</h1><p>Have a technology challenge, an idea or a platform to modernise? We'd welcome a conversation.</p></div></section><section class="section"><div class="container grid-two"><div><div class="eyebrow">Tell us about your project</div><h2 class="heading">Let's explore what we can build together.</h2><p class="lead">Our contact form will be activated when the email delivery service is configured. Until then, this preview intentionally does not collect personal information.</p></div><form class="content-card" onsubmit="return false" aria-label="Contact form preview"><label for="name">Your name</label><input id="name" class="contact-field" disabled placeholder="Full name"/><label for="email" style="display:block;margin-top:20px">Work email</label><input id="email" class="contact-field" disabled placeholder="you@company.com"/><label for="message" style="display:block;margin-top:20px">Tell us about your project</label><textarea id="message" class="contact-field" disabled rows="5" placeholder="A brief description..."></textarea><button class="btn btn-dark" disabled style="opacity:.55;margin-top:20px;cursor:not-allowed">Sending available after launch</button><p class="muted" style="font-size:12px;margin-top:15px">Preview only. No information is submitted or stored.</p></form></div></section></BaseLayout>
+
+<BaseLayout
+  title="Contact"
+  description="Start a conversation with ModusFi about software engineering, financial technology, cloud modernisation or AI."
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow">Contact</div>
+      <h1>Let's start a conversation.</h1>
+      <p>
+        Have a technology challenge, an idea or a platform to modernise? We'd welcome a
+        conversation.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid-two">
+      <div>
+        <div class="eyebrow">Tell us about your project</div>
+        <h2 class="heading">Let's explore what we can build together.</h2>
+        <p class="lead">
+          Our contact form will be activated when the email delivery service is configured. Until
+          then, this preview intentionally does not collect personal information.
+        </p>
+      </div>
+      <form class="content-card" onsubmit="return false" aria-label="Contact form preview">
+        <label for="name">Your name</label>
+        <input id="name" class="contact-field" disabled placeholder="Full name" />
+        <label for="email" style="display:block;margin-top:20px">
+          Work email
+        </label>
+        <input id="email" class="contact-field" disabled placeholder="you@company.com" />
+        <label for="message" style="display:block;margin-top:20px">
+          Tell us about your project
+        </label>
+        <textarea
+          id="message"
+          class="contact-field"
+          disabled
+          rows="5"
+          placeholder="A brief description..."
+        ></textarea>
+        <button
+          class="btn btn-dark"
+          disabled
+          style="opacity:.55;margin-top:20px;cursor:not-allowed"
+        >
+          Sending available after launch
+        </button>
+        <p class="muted" style="font-size:12px;margin-top:15px">
+          Preview only. No information is submitted or stored.
+        </p>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
