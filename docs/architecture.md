@@ -22,6 +22,34 @@ These are design assumptions from the current project discussion; always inspect
 4. Keep build and runtime dependencies small.
 5. Avoid client hydration unless it provides necessary functionality.
 
+## Service pages
+
+`/services` remains the overview. Homepage cards and overview links lead to four static routes:
+
+- `/services/software-product-engineering`
+- `/services/ai-intelligent-automation`
+- `/services/cloud-platform-modernisation`
+- `/services/financial-technology-engineering`
+
+The AI service is titled “AI & Intelligent Systems”; its existing `ai-intelligent-automation` URL
+is retained so that links remain stable.
+
+`src/data/services.ts` holds the shared service titles, slugs, short homepage descriptions, existing
+overview descriptions and capabilities. Homepage and overview ordering are defined separately to
+preserve the current presentation. Keep links aligned with the corresponding files in
+`src/pages/services/` when changing slugs.
+
+Each service has its own Astro page using `src/layouts/ServiceLayout.astro`. The layout provides
+metadata through `BaseLayout`, breadcrumbs, an introduction, capabilities and contact/overview links.
+Its default slot accepts service-specific sections before the final call to action. Add detailed
+copy, optimised imagery and semantic diagrams in those individual pages as content is approved;
+do not add empty visual placeholders or client-side frameworks for this purpose.
+
+Detailed content is maintained in the individual service pages. The shared layout supports named
+introduction and call-to-action slots as well as service-specific body sections. Additional graphics
+can be added as they are approved. The partner introduction PDF is background reference; its claims
+and assets are not automatically approved for publication.
+
 ## Contact form
 
 The static contact page submits to `/api/contact`, implemented as a Cloudflare Pages Function in

@@ -1,28 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const services = [
-  {
-    icon: 'code',
-    title: 'Software & Product Engineering',
-    desc: 'Design and develop sophisticated software products and platforms.',
-  },
-  {
-    icon: 'ai',
-    title: 'AI & Intelligent Automation',
-    desc: 'Engineer practical AI solutions that improve how organisations analyse, decide and operate.',
-  },
-  {
-    icon: 'cloud',
-    title: 'Cloud & Platform Modernisation',
-    desc: 'Modernise applications and platforms to improve performance, resilience and scalability.',
-  },
-  {
-    icon: 'bank',
-    title: 'Financial Technology Engineering',
-    desc: 'Apply deep banking and payments experience to build secure, scalable financial solutions.',
-  },
-];
+import { homeServices } from '../data/services';
 
 const icons = {
   code: 'M5 8 1 12l4 4M19 8l4 4-4 4M14 4l-4 16',
@@ -87,8 +65,12 @@ const icons = {
       </div>
 
       <div class="grid-four">
-        {services.map((s) => (
-          <a href="/services" class="card service-card" aria-label={`Learn about ${s.title}`}>
+        {homeServices.map((s) => (
+          <a
+            href={`/services/${s.slug}`}
+            class="card service-card"
+            aria-label={`Learn about ${s.title}`}
+          >
             <svg
               width="42"
               height="42"
@@ -100,12 +82,12 @@ const icons = {
               stroke-linejoin="round"
               aria-hidden="true"
             >
-              <path d={icons[s.icon as keyof typeof icons]} />
+              <path d={icons[s.icon]} />
             </svg>
 
             <h3>{s.title}</h3>
 
-            <p>{s.desc}</p>
+            <p>{s.summary}</p>
 
             <span class="service-card-arrow" aria-hidden="true">
               →

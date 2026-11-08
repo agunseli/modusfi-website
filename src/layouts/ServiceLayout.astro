@@ -1,0 +1,131 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { Service } from '../data/services';
+
+interface Props {
+  service: Service;
+  summary?: string;
+}
+
+const { service, summary = service.summary } = Astro.props;
+---
+
+<BaseLayout title={service.title} description={summary}>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="service-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li>
+            <a href="/">Home</a>
+            <span aria-hidden="true">/</span>
+          </li>
+          <li>
+            <a href="/services">Services</a>
+            <span aria-hidden="true">/</span>
+          </li>
+          <li>
+            <span aria-current="page">{service.title}</span>
+          </li>
+        </ol>
+      </nav>
+      <h1 class="service-title">{service.title}</h1>
+      <p>{summary}</p>
+    </div>
+  </section>
+
+  <slot name="introduction">
+    <section class="section">
+      <div class="container grid-two">
+        <div>
+          <div class="eyebrow">Our services</div>
+          <h2 class="heading">How we help</h2>
+          <p class="lead">{service.description}</p>
+        </div>
+        <div class="content-card service-capabilities">
+          <h2 class="heading">What we cover</h2>
+          <ul>
+            {service.capabilities.map((capability) => (
+              <li>{capability}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </slot>
+
+  <!-- Each service page can add its own content sections, diagrams and images here. -->
+  <slot />
+
+  <slot name="call-to-action">
+    <section class="section cta">
+      <div class="container grid-two">
+        <h2 class="heading">Discuss a project</h2>
+        <div class="service-actions">
+          <a href="/contact" class="btn btn-primary">
+            Contact us <span aria-hidden="true">→</span>
+          </a>
+          <a href="/services" class="service-overview-link">
+            Explore all services <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </slot>
+</BaseLayout>
+
+<style>
+  .service-breadcrumbs {
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #d1e0ec;
+  }
+  .service-breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .service-breadcrumbs li {
+    display: flex;
+    gap: 12px;
+  }
+  .service-breadcrumbs a,
+  .service-overview-link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .service-breadcrumbs a:focus-visible,
+  .service-actions a:focus-visible {
+    outline: 2px solid #00b3c6;
+    outline-offset: 4px;
+  }
+  .service-title {
+    overflow-wrap: anywhere;
+  }
+  .service-capabilities {
+    align-self: start;
+  }
+  .service-capabilities .heading {
+    margin-top: 0;
+    font-size: 27px;
+  }
+  .service-capabilities ul {
+    margin: 24px 0 0;
+    padding-left: 22px;
+    list-style: disc;
+    color: #43566b;
+    line-height: 1.75;
+  }
+  .service-capabilities li + li {
+    margin-top: 12px;
+  }
+  .service-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+</style>

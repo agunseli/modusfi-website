@@ -1,0 +1,344 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { services } from '../../data/services';
+
+const capabilities = [
+  {
+    title: 'Product discovery and architecture',
+    introduction:
+      'Connect the business opportunity to a clear product direction and a workable technical approach.',
+    items: [
+      'User needs, business requirements and product scope.',
+      'Technical discovery, feasibility assessment and prototyping.',
+      'System architecture, data modelling and API design.',
+      'Delivery planning, priorities and incremental releases.',
+    ],
+  },
+  {
+    title: 'Software products and platforms',
+    introduction:
+      'Build the applications and services that support your customers, teams and business operations.',
+    items: [
+      'Customer-facing web applications and digital products.',
+      'SaaS platforms and internal business applications.',
+      'Backend services, business logic and data processing.',
+      'Distributed systems and cloud-native applications.',
+    ],
+  },
+  {
+    title: 'APIs and systems integration',
+    introduction:
+      'Make new capabilities work with the systems, information and processes already in place.',
+    items: [
+      'API development and third-party service integration.',
+      'Connections between enterprise applications and data sources.',
+      'Workflow orchestration and event-driven integration.',
+      'Authentication, access controls and integration monitoring.',
+    ],
+  },
+];
+
+const principles = [
+  [
+    'Maintainable architecture',
+    'Clear system boundaries, understandable code and documented decisions that support future development.',
+  ],
+  [
+    'Quality throughout delivery',
+    'Code review and automated testing focused on the behaviour, integrations and journeys that matter.',
+  ],
+  [
+    'Security by design',
+    'Appropriate access controls, data protection and secure development practices considered from the outset.',
+  ],
+  [
+    'Operational readiness',
+    'Deployment automation, monitoring and failure handling planned alongside the software itself.',
+  ],
+];
+
+const deliverySteps = [
+  [
+    'Understand',
+    'Clarify the problem, users, constraints and what a useful first release needs to achieve.',
+  ],
+  [
+    'Design',
+    'Define the product scope, architecture and integration approach, testing important assumptions early.',
+  ],
+  [
+    'Build and validate',
+    'Develop in increments, review working software and test it against agreed requirements.',
+  ],
+  [
+    'Launch and evolve',
+    'Deploy, support the solution in operation and improve it as needs and usage develop.',
+  ],
+];
+---
+
+<ServiceLayout
+  service={services.software}
+  summary="We design and develop software products and platforms, from early-stage concepts to enterprise applications. Product thinking and hands-on engineering connect the business need to the working solution."
+>
+  <section slot="introduction" class="section">
+    <div class="container grid-two software-introduction">
+      <h2 class="heading">
+        From product idea
+        <br />
+        to dependable software.
+      </h2>
+      <p class="lead">
+        Whether you are creating a new product or extending an existing platform, we help define
+        what to build, make the architectural decisions and deliver the engineering through to
+        deployment and ongoing support.
+      </p>
+    </div>
+  </section>
+
+  <section class="section expertise">
+    <div class="container">
+      <div class="software-section-introduction">
+        <div class="eyebrow">Our capabilities</div>
+        <h2 class="heading">Product thinking. Practical engineering.</h2>
+        <p class="lead">
+          Successful software needs a clear purpose, sound architecture and careful implementation.
+          We bring these together across the product lifecycle, keeping user needs and business
+          priorities connected to technical delivery.
+        </p>
+      </div>
+      <div class="software-capability-grid">
+        {capabilities.map((capability) => (
+          <article class="content-card software-capability-card">
+            <h3>{capability.title}</h3>
+            <p>{capability.introduction}</p>
+            <ul>
+              {capability.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-two software-quality">
+        <h2 class="heading">Built for life beyond the first release</h2>
+        <div>
+          <p class="lead">
+            A working feature is only part of the job. Software must also be understandable,
+            testable, secure and manageable in operation.
+          </p>
+          <p class="lead">
+            We favour technology and architectural choices that fit the problem, the people
+            operating the system and its expected growth. Complexity should serve a clear purpose.
+          </p>
+        </div>
+      </div>
+      <dl class="software-principles">
+        {principles.map(([title, description]) => (
+          <div>
+            <dt>{title}</dt>
+            <dd>{description}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section software-delivery-section">
+    <div class="container">
+      <div class="software-section-introduction">
+        <h2 class="heading">Delivery with ownership</h2>
+        <p class="lead">
+          We take responsibility for the agreed solution, assembling and managing the engineering
+          capability within the project. Working software, regular feedback and clear decisions keep
+          delivery focused on the outcome.
+        </p>
+      </div>
+      <ol class="software-delivery-steps">
+        {deliverySteps.map(([title, description], index) => (
+          <li>
+            <span class="step-number" aria-hidden="true">
+              0{index + 1}
+            </span>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section slot="call-to-action" class="section cta">
+    <div class="container grid-two software-cta">
+      <h2 class="heading">Let’s build your next product</h2>
+      <div>
+        <p class="lead">
+          Have a product idea, a platform to develop or systems that need to work together? We can
+          help shape the approach and deliver the software.
+        </p>
+        <div class="software-actions">
+          <a href="/contact" class="btn btn-primary">
+            Discuss a project <span aria-hidden="true">→</span>
+          </a>
+          <a href="/services" class="all-services-link">
+            Explore all services <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</ServiceLayout>
+
+<style>
+  .software-introduction,
+  .software-cta {
+    align-items: center;
+  }
+  .software-introduction .heading,
+  .software-introduction .lead,
+  .software-quality .heading,
+  .software-cta .heading {
+    margin: 0;
+  }
+  .software-quality {
+    align-items: start;
+  }
+  .software-quality .lead:first-child {
+    margin-top: 0;
+  }
+  .software-quality .lead:last-child {
+    margin-bottom: 0;
+  }
+  .software-section-introduction {
+    max-width: 850px;
+  }
+  .software-section-introduction .heading {
+    margin: 14px 0 18px;
+  }
+  .lead + .lead {
+    margin-top: 18px;
+  }
+  .software-capability-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .software-capability-card {
+    padding: 28px;
+    color: #43566b;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .software-capability-card h3 {
+    margin: 0 0 16px;
+    color: #101d32;
+    font-family: 'Manrope', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .software-capability-card p {
+    margin: 0;
+  }
+  .software-capability-card ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 20px 0 0;
+  }
+  .software-capability-card li + li {
+    margin-top: 10px;
+  }
+  .software-principles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 42px;
+    margin: 36px 0 0;
+  }
+  .software-principles > div {
+    border-top: 1px solid #cddde8;
+    padding-top: 20px;
+  }
+  .software-principles dt {
+    color: #101d32;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .software-principles dd {
+    margin: 8px 0 0;
+    color: #43566b;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .software-delivery-section {
+    background: #f3f8fb;
+  }
+  .software-delivery-steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
+    list-style: none;
+    padding: 0;
+    margin: 36px 0 0;
+  }
+  .software-delivery-steps > li {
+    border-left: 1px solid #cddde8;
+    padding-left: 22px;
+  }
+  .step-number {
+    color: #43566b;
+    font-size: 14px;
+  }
+  .software-delivery-steps h3 {
+    color: #101d32;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 12px 0;
+  }
+  .software-delivery-steps p {
+    margin: 0;
+    color: #43566b;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .software-cta .lead {
+    color: #d9e8f1;
+    margin: 0 0 24px;
+  }
+  .software-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .all-services-link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .software-actions a:focus-visible {
+    outline: 2px solid #00b3c6;
+    outline-offset: 4px;
+  }
+  @media (max-width: 900px) {
+    .software-capability-grid {
+      grid-template-columns: 1fr;
+    }
+    .software-delivery-steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 680px) {
+    .software-principles,
+    .software-delivery-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

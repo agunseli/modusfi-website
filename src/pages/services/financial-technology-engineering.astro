@@ -1,0 +1,281 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { services } from '../../data/services';
+
+const capabilities = [
+  {
+    title: 'Payment initiation',
+    introduction: 'Engineer payment journeys and supporting platforms for:',
+    items: [
+      'Immediate and scheduled payments.',
+      'Recurring payments and Variable Recurring Payments.',
+      'Bank connectivity and payment initiation APIs.',
+      'Consent, authorisation and payment-status handling.',
+      'Integration with customer-facing products and business systems.',
+    ],
+  },
+  {
+    title: 'Account information',
+    introduction: 'Build account information capabilities that support:',
+    items: [
+      'Account aggregation and transaction retrieval.',
+      'Transaction categorisation and structured financial data.',
+      'Affordability assessment and financial analysis workflows.',
+      'Consent management and account-access journeys.',
+      'Integration of account information into wider products and services.',
+    ],
+  },
+  {
+    title: 'Platform and product engineering',
+    introduction: 'Connect the product proposition to the technical implementation:',
+    items: [
+      'Product discovery, requirements and delivery planning.',
+      'Platform architecture and API design.',
+      'Bank and enterprise-system integration.',
+      'Secure access, observability and operational resilience.',
+      'Deployment, ongoing support and platform improvement.',
+    ],
+  },
+];
+
+const broaderCapabilities = [
+  [
+    'Digital and internet banking',
+    'Experience leading digital banking delivery for a major bank, combining engineering-team leadership with coordination across the bank’s senior stakeholders.',
+  ],
+  [
+    'Core banking development and integration',
+    'Experience delivering substantial core banking modules and connecting banking capabilities with digital channels and enterprise systems.',
+  ],
+  [
+    'Payments and remittance',
+    'Experience developing payment and remittance technology, informing our approach to transaction workflows, financial integrations and platform design.',
+  ],
+];
+---
+
+<ServiceLayout
+  service={services.financial}
+  summary="We design, build and integrate financial technology platforms, with particular depth in Open Banking. From product definition and architecture through implementation and ongoing support, we help organisations turn complex requirements into working solutions."
+>
+  <section slot="introduction" class="section">
+    <div class="container grid-two financial-introduction">
+      <h2 class="heading">
+        Open Banking expertise.
+        <br />
+        End-to-end engineering.
+      </h2>
+      <p class="lead">
+        Our capabilities combine hands-on product and engineering leadership with experience across
+        banking, payments and enterprise integration.
+      </p>
+    </div>
+  </section>
+
+  <section class="section expertise">
+    <div class="container">
+      <div class="open-banking-introduction">
+        <div class="eyebrow">Our focus</div>
+        <h2 class="heading">Open Banking, from product to platform</h2>
+        <p class="lead">
+          Building an Open Banking solution takes more than connecting to bank APIs. It requires
+          clear product decisions, dependable integrations, well-designed consent journeys and an
+          engineering foundation that supports day-to-day operation.
+        </p>
+        <p class="lead">
+          We help financial institutions, fintechs and enterprises develop platforms and embed Open
+          Banking capabilities into their products and business processes.
+        </p>
+      </div>
+      <div class="financial-grid">
+        {capabilities.map((capability) => (
+          <article class="content-card capability-card">
+            <h3>{capability.title}</h3>
+            <p>{capability.introduction}</p>
+            <ul>
+              {capability.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-two financial-experience">
+      <div>
+        <div class="eyebrow">Founding experience</div>
+        <h2 class="heading">Experience behind the engineering</h2>
+      </div>
+      <div>
+        <p class="lead">
+          ModusFi’s founding experience includes product and technology leadership at{' '}
+          <strong>Ecospend</strong>, the UK Open Banking company subsequently acquired by{' '}
+          <strong>Trustly</strong>.
+        </p>
+        <p class="lead">
+          That experience spans establishing the engineering team, shaping the product offering and
+          leading development of the Open Banking platform from its inception. It also includes
+          working through detailed product requirements and supporting technical sales discussions
+          with major enterprise and public-sector organisations.
+        </p>
+        <p class="lead">
+          This brings a practical understanding of how product decisions, engineering choices and
+          customer requirements must work together.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section broader-capabilities">
+    <div class="container">
+      <h2 class="heading">Broader banking and payments experience</h2>
+      <p class="lead">
+        Our Open Banking focus is supported by experience across the systems and channels around it.
+      </p>
+      <div class="financial-grid">
+        {broaderCapabilities.map(([title, description]) => (
+          <article class="content-card capability-card">
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-two financial-delivery">
+      <h2 class="heading">Delivery with ownership</h2>
+      <div>
+        <p class="lead">
+          We take responsibility for delivering the agreed solution—from understanding the business
+          need and defining the product through architecture, engineering, deployment and ongoing
+          support.
+        </p>
+        <p class="lead">
+          We assemble and manage the engineering capability within the engagement, keeping delivery
+          coordinated around the solution and its operational needs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section slot="call-to-action" class="section cta">
+    <div class="container grid-two financial-cta">
+      <h2 class="heading">Discuss your Open Banking initiative</h2>
+      <div>
+        <p class="lead">
+          Whether you are developing a new platform, integrating Open Banking into an existing
+          product or extending an established service, we can help shape the approach and deliver
+          the engineering.
+        </p>
+        <div class="financial-actions">
+          <a href="/contact" class="btn btn-primary">
+            Discuss a project <span aria-hidden="true">→</span>
+          </a>
+          <a href="/services" class="all-services-link">
+            Explore all services <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</ServiceLayout>
+
+<style>
+  .financial-introduction,
+  .financial-cta {
+    align-items: center;
+  }
+  .financial-introduction .heading,
+  .financial-introduction .lead,
+  .financial-delivery .heading,
+  .financial-cta .heading {
+    margin: 0;
+  }
+  .financial-experience,
+  .financial-delivery {
+    align-items: start;
+  }
+  .financial-experience .heading,
+  .open-banking-introduction .heading {
+    margin: 14px 0 18px;
+  }
+  .financial-experience .lead:first-child,
+  .financial-delivery .lead:first-child {
+    margin-top: 0;
+  }
+  .financial-experience .lead:last-child,
+  .financial-delivery .lead:last-child {
+    margin-bottom: 0;
+  }
+  .open-banking-introduction {
+    max-width: 850px;
+  }
+  .lead + .lead {
+    margin-top: 18px;
+  }
+  .financial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .capability-card {
+    padding: 28px;
+    color: #43566b;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .capability-card h3 {
+    margin: 0 0 16px;
+    color: #101d32;
+    font-family: 'Manrope', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .capability-card p {
+    margin: 0;
+  }
+  .capability-card ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 20px 0 0;
+  }
+  .capability-card li + li {
+    margin-top: 10px;
+  }
+  .broader-capabilities {
+    background: #f3f8fb;
+  }
+  .broader-capabilities .heading {
+    margin-top: 0;
+  }
+  .financial-cta .lead {
+    color: #d9e8f1;
+    margin: 0 0 24px;
+  }
+  .financial-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .all-services-link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .financial-actions a:focus-visible {
+    outline: 2px solid #00b3c6;
+    outline-offset: 4px;
+  }
+  @media (max-width: 900px) {
+    .financial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

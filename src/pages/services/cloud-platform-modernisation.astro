@@ -1,0 +1,345 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { services } from '../../data/services';
+
+const capabilities = [
+  {
+    title: 'Cloud and platform architecture',
+    introduction:
+      'Define a platform architecture that fits the application, its operating requirements and the organisation around it.',
+    items: [
+      'Assessment of existing applications, infrastructure and dependencies.',
+      'Cloud architecture and target-platform design.',
+      'Service boundaries, data flows and integration patterns.',
+      'Capacity, availability and cost considerations.',
+    ],
+  },
+  {
+    title: 'Application modernisation and migration',
+    introduction:
+      'Evolve existing systems through planned changes that preserve essential business behaviour.',
+    items: [
+      'Legacy application assessment and modernisation roadmaps.',
+      'Refactoring, replatforming and service decomposition.',
+      'Application and data migration planning.',
+      'Integration continuity, staged cutovers and rollback arrangements.',
+    ],
+  },
+  {
+    title: 'Platform engineering and DevSecOps',
+    introduction:
+      'Establish repeatable ways to build, deploy and operate software across development and production.',
+    items: [
+      'Infrastructure as Code and environment configuration.',
+      'Continuous integration and deployment pipelines.',
+      'Automated testing and security checks in the delivery process.',
+      'Configuration, secrets management and release controls.',
+    ],
+  },
+];
+
+const principles = [
+  [
+    'Observability',
+    'Logs, metrics and alerting that help teams understand system behaviour and investigate problems.',
+  ],
+  [
+    'Resilience and recovery',
+    'Failure handling, backup and recovery arrangements, tested against the needs of the service.',
+  ],
+  [
+    'Security and access',
+    'Appropriate permissions, protected configuration and clear responsibility for platform changes.',
+  ],
+  [
+    'Capacity and cost visibility',
+    'An understanding of resource usage, scaling behaviour and operating costs to inform ongoing decisions.',
+  ],
+];
+
+const deliverySteps = [
+  [
+    'Assess',
+    'Understand the current estate, business priorities, dependencies and operational constraints.',
+  ],
+  [
+    'Plan',
+    'Define the target architecture, sequence the changes and agree how progress and risk will be assessed.',
+  ],
+  [
+    'Transition',
+    'Implement and validate changes in stages, with migration, cutover and recovery arrangements in place.',
+  ],
+  [
+    'Operate and improve',
+    'Support the platform in use, monitor its behaviour and refine it as requirements develop.',
+  ],
+];
+---
+
+<ServiceLayout
+  service={services.cloud}
+  summary="We help organisations modernise applications and platforms, improve system architecture and build the foundations for reliable operation and future growth."
+>
+  <section slot="introduction" class="section">
+    <div class="container grid-two cloud-introduction">
+      <h2 class="heading">
+        Modernise with purpose.
+        <br />
+        Build for what comes next.
+      </h2>
+      <p class="lead">
+        We connect business priorities with practical engineering decisions—assessing the existing
+        estate, defining the target platform and delivering the changes through to ongoing
+        operation.
+      </p>
+    </div>
+  </section>
+
+  <section class="section expertise">
+    <div class="container">
+      <div class="cloud-section-introduction">
+        <div class="eyebrow">Our capabilities</div>
+        <h2 class="heading">Architecture, migration and delivery foundations</h2>
+        <p class="lead">
+          Modernisation involves applications, data, infrastructure and the way software is
+          delivered. We assess these together to identify what to retain, what to improve and how to
+          make the transition manageable.
+        </p>
+      </div>
+      <div class="cloud-capability-grid">
+        {capabilities.map((capability) => (
+          <article class="content-card cloud-capability-card">
+            <h3>{capability.title}</h3>
+            <p>{capability.introduction}</p>
+            <ul>
+              {capability.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-two cloud-operations">
+        <h2 class="heading">Designed for day-to-day operation</h2>
+        <div>
+          <p class="lead">
+            A modern platform needs to be understandable and manageable by the people responsible
+            for it. Operational requirements belong in the architecture and delivery plan from the
+            beginning.
+          </p>
+          <p class="lead">
+            We consider how services are monitored, how incidents are investigated and how systems
+            recover, alongside performance, security and the cost of running them.
+          </p>
+        </div>
+      </div>
+      <dl class="cloud-principles">
+        {principles.map(([title, description]) => (
+          <div>
+            <dt>{title}</dt>
+            <dd>{description}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section cloud-delivery-section">
+    <div class="container">
+      <div class="cloud-section-introduction">
+        <h2 class="heading">A measured path through change</h2>
+        <p class="lead">
+          Existing systems carry business knowledge and operational dependencies. We make those
+          visible, agree the priorities and deliver changes in stages, validating both the technical
+          implementation and its effect on the service.
+        </p>
+      </div>
+      <ol class="cloud-delivery-steps">
+        {deliverySteps.map(([title, description], index) => (
+          <li>
+            <span class="step-number" aria-hidden="true">
+              0{index + 1}
+            </span>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section slot="call-to-action" class="section cta">
+    <div class="container grid-two cloud-cta">
+      <h2 class="heading">Discuss your platform’s next chapter</h2>
+      <div>
+        <p class="lead">
+          Planning a cloud migration, modernising an application or improving how your platform
+          operates? We can help assess the starting point and deliver the next steps.
+        </p>
+        <div class="cloud-actions">
+          <a href="/contact" class="btn btn-primary">
+            Discuss a project <span aria-hidden="true">→</span>
+          </a>
+          <a href="/services" class="all-services-link">
+            Explore all services <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</ServiceLayout>
+
+<style>
+  .cloud-introduction,
+  .cloud-cta {
+    align-items: center;
+  }
+  .cloud-introduction .heading,
+  .cloud-introduction .lead,
+  .cloud-operations .heading,
+  .cloud-cta .heading {
+    margin: 0;
+  }
+  .cloud-operations {
+    align-items: start;
+  }
+  .cloud-operations .lead:first-child {
+    margin-top: 0;
+  }
+  .cloud-operations .lead:last-child {
+    margin-bottom: 0;
+  }
+  .cloud-section-introduction {
+    max-width: 850px;
+  }
+  .cloud-section-introduction .heading {
+    margin: 14px 0 18px;
+  }
+  .lead + .lead {
+    margin-top: 18px;
+  }
+  .cloud-capability-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .cloud-capability-card {
+    padding: 28px;
+    color: #43566b;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .cloud-capability-card h3 {
+    margin: 0 0 16px;
+    color: #101d32;
+    font-family: 'Manrope', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .cloud-capability-card p {
+    margin: 0;
+  }
+  .cloud-capability-card ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 20px 0 0;
+  }
+  .cloud-capability-card li + li {
+    margin-top: 10px;
+  }
+  .cloud-principles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 42px;
+    margin: 36px 0 0;
+  }
+  .cloud-principles > div {
+    border-top: 1px solid #cddde8;
+    padding-top: 20px;
+  }
+  .cloud-principles dt {
+    color: #101d32;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .cloud-principles dd {
+    margin: 8px 0 0;
+    color: #43566b;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .cloud-delivery-section {
+    background: #f3f8fb;
+  }
+  .cloud-delivery-steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
+    list-style: none;
+    padding: 0;
+    margin: 36px 0 0;
+  }
+  .cloud-delivery-steps > li {
+    border-left: 1px solid #cddde8;
+    padding-left: 22px;
+  }
+  .step-number {
+    color: #43566b;
+    font-size: 14px;
+  }
+  .cloud-delivery-steps h3 {
+    color: #101d32;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 12px 0;
+  }
+  .cloud-delivery-steps p {
+    margin: 0;
+    color: #43566b;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .cloud-cta .lead {
+    color: #d9e8f1;
+    margin: 0 0 24px;
+  }
+  .cloud-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .all-services-link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .cloud-actions a:focus-visible {
+    outline: 2px solid #00b3c6;
+    outline-offset: 4px;
+  }
+  @media (max-width: 900px) {
+    .cloud-capability-grid {
+      grid-template-columns: 1fr;
+    }
+    .cloud-delivery-steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 680px) {
+    .cloud-principles,
+    .cloud-delivery-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
