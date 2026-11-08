@@ -165,9 +165,26 @@ export async function onRequest({
       }),
       signal: AbortSignal.timeout(10_000),
     });
-    if (!deliveryResponse.ok) return reply(502);
-    const delivery = (await deliveryResponse.json()) as { ErrorCode?: number; MessageID?: string };
-    if (delivery.ErrorCode !== 0 || !delivery.MessageID) return reply(502);
+    const result: unknown = await deliveryResponse.json().catch(() => null);
+    const delivery =
+      result && typeof result === 'object' ? (result as Record<string, unknown>) : null;
+    if (
+      !deliveryResponse.ok ||
+      delivery?.ErrorCode !== 0 ||
+      typeof delivery?.MessageID !== 'string' ||
+      !delivery.MessageID
+    ) {
+      // Provider messages can contain addresses. Log only fixed labels and numeric codes.
+      console.error('contact_delivery_failed', {
+        provider: 'postmark',
+        httpStatus: deliveryResponse.status,
+        errorCode:
+          typeof delivery?.ErrorCode === 'number' && Number.isSafeInteger(delivery.ErrorCode)
+            ? delivery.ErrorCode
+            : null,
+      });
+      return reply(deliveryResponse.ok && !delivery ? 504 : 502);
+    }
     return reply(200, true);
   } catch {
     // Never log submissions, tokens, or provider exceptions containing personal data.

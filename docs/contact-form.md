@@ -134,6 +134,11 @@ The edge rate limiting rule supplies `429`. Unexpected responses and timeouts ne
 
 ## Checks
 
+If delivery fails, open the production deployment's Functions log stream and reproduce one test.
+The `contact_delivery_failed` entry records only Postmark's HTTP status and numeric error code.
+It never records the provider's message, recipient, enquiry, or API token. Use the error code with
+Postmark's API error reference to diagnose authentication, sender or account restrictions.
+
 Run `node --test tests/contact-form.test.mjs tests/contact-endpoint.test.mjs`, then
 `bash scripts/ai-checks.sh`. Tests mock external services; they never send email and do not substitute
 for a deployed Pages/Turnstile/Postmark integration test.
