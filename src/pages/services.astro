@@ -1,27 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const services = [
-  [
-    'Financial Technology Engineering',
-    'We combine practical banking, payments and Open Banking experience with modern software engineering to build secure and reliable financial systems.',
-    'Open Banking · Payments · Digital banking · Financial integrations',
-  ],
-  [
-    'Software & Product Engineering',
-    'We design and develop sophisticated software products, from early-stage concepts to enterprise-grade platforms. Our expertise spans architecture, backend and frontend engineering, APIs, distributed systems and cloud-native applications.',
-    'Product architecture · SaaS platforms · Full-stack development · Systems integration',
-  ],
-  [
-    'AI & Intelligent Automation',
-    'We engineer AI-enabled applications combining large language models, structured information, business rules and human oversight. We focus on practical solutions that improve how organisations analyse information, make decisions and operate.',
-    'LLM integration · Intelligent workflows · AI agents · Human-in-the-loop systems',
-  ],
-  [
-    'Cloud & Platform Modernisation',
-    'We help organisations modernise existing applications, improve system architecture and establish secure, scalable foundations for future growth.',
-    'Cloud architecture · Legacy modernisation · DevSecOps · Operational resilience',
-  ],
-];
+import { overviewServices } from '../data/services';
 ---
 
 <BaseLayout
@@ -40,14 +19,18 @@ const services = [
   </section>
   <section class="section">
     <div class="container simple-grid">
-      {services.map((s, i) => (
-        <article class="content-card">
+      {overviewServices.map((s, i) => (
+        <article class="content-card service-overview-card">
           <div class="eyebrow">0{i + 1} / Service</div>
-          <h2 style="font-size:29px;letter-spacing:-.045em;margin:20px 0">{s[0]}</h2>
-          <p class="lead">{s[1]}</p>
+          <h2 style="font-size:29px;letter-spacing:-.045em;margin:20px 0">{s.title}</h2>
+          <p class="lead">{s.description}</p>
           <p class="muted" style="font-size:14px;line-height:1.8;margin-top:25px">
-            {s[2]}
+            {s.capabilities.join(' · ')}
           </p>
+          <a class="text-link service-detail-link" href={`/services/${s.slug}`}>
+            Explore this service <span class="sr-only">: {s.title}</span>{' '}
+            <span aria-hidden="true">→</span>
+          </a>
         </article>
       ))}
     </div>
@@ -70,3 +53,20 @@ const services = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .service-overview-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .service-detail-link {
+    align-self: flex-start;
+    margin-top: auto;
+    padding-top: 24px;
+    color: #101d32;
+  }
+  .service-detail-link:focus-visible {
+    outline: 2px solid #00b3c6;
+    outline-offset: 4px;
+  }
+</style>
