@@ -11,6 +11,7 @@ const source = ts.transpileModule(
 
 function setup({ verification, delivery, failNetwork = false } = {}) {
   const calls = [];
+  const logs = [];
   const context = {
     exports: {},
     Response,
@@ -19,6 +20,7 @@ function setup({ verification, delivery, failNetwork = false } = {}) {
     AbortSignal,
     Uint8Array,
     TextDecoder,
+    console: { error: (...args) => logs.push(args) },
     fetch: async (url, options) => {
       calls.push({ url, options });
       if (failNetwork) throw new TypeError('Network error containing private provider details');
@@ -46,6 +48,7 @@ function setup({ verification, delivery, failNetwork = false } = {}) {
   };
   return {
     calls,
+    logs,
     env,
     payload,
     send: (
@@ -157,4 +160,38 @@ test('network uncertainty exposes no internals and never automatically retries',
   assert.equal(response.status, 504);
   assert.deepEqual(await response.json(), { success: false });
   assert.equal(app.calls.length, 1);
+});
+
+test('delivery diagnostics expose only a fixed label, provider and numeric codes', async () => {
+  const app = setup({
+    delivery: Response.json(
+      {
+        ErrorCode: 10,
+        Message: 'Private details: recipient@example.com mock-token Project',
+      },
+      { status: 401 },
+    ),
+  });
+  const response = await app.send();
+  assert.equal(response.status, 502);
+  assert.deepEqual(await response.json(), { success: false });
+  assert.deepEqual(JSON.parse(JSON.stringify(app.logs)), [
+    ['contact_delivery_failed', { provider: 'postmark', httpStatus: 401, errorCode: 10 }],
+  ]);
+});
+
+test('untrusted provider error fields and non-JSON responses cannot leak into logs', async () => {
+  for (const delivery of [
+    Response.json(
+      { ErrorCode: 'private@example.com', Message: 'private message' },
+      { status: 422 },
+    ),
+    new Response('private message and credentials', { status: 502 }),
+  ]) {
+    const app = setup({ delivery });
+    assert.equal((await app.send()).status, 502);
+    const logs = JSON.parse(JSON.stringify(app.logs));
+    assert.equal(logs[0][1].errorCode, null);
+    assert.doesNotMatch(JSON.stringify(logs), /private|credentials/);
+  }
 });
