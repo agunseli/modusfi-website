@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim();
+const enabled = import.meta.env.PUBLIC_CONTACT_FORM_ENABLED === 'true' && Boolean(siteKey);
 ---
 
 <BaseLayout
@@ -22,38 +25,144 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="eyebrow">Tell us about your project</div>
         <h2 class="heading">Let's explore what we can build together.</h2>
         <p class="lead">
-          Our contact form will be activated when the email delivery service is configured. Until
-          then, this preview intentionally does not collect personal information.
+          Tell us a little about your challenge and how we can help. Please leave out passwords,
+          account details and other sensitive information.
         </p>
       </div>
-      <form class="content-card" onsubmit="return false" aria-label="Contact form preview">
-        <label for="name">Your name</label>
-        <input id="name" class="contact-field" disabled placeholder="Full name" />
-        <label for="email" style="display:block;margin-top:20px">
-          Work email
-        </label>
-        <input id="email" class="contact-field" disabled placeholder="you@company.com" />
-        <label for="message" style="display:block;margin-top:20px">
-          Tell us about your project
-        </label>
-        <textarea
-          id="message"
-          class="contact-field"
-          disabled
-          rows="5"
-          placeholder="A brief description..."
-        ></textarea>
-        <button
-          class="btn btn-dark"
-          disabled
-          style="opacity:.55;margin-top:20px;cursor:not-allowed"
-        >
-          Sending available after launch
-        </button>
-        <p class="muted" style="font-size:12px;margin-top:15px">
-          Preview only. No information is submitted or stored.
+      <form
+        id="contact-form"
+        class="content-card contact-form"
+        action="/api/contact"
+        method="post"
+        aria-label="Contact us"
+        aria-describedby="contact-availability"
+        data-enabled={enabled ? 'true' : 'false'}
+        data-sitekey={enabled ? siteKey : undefined}
+      >
+        <p id="contact-availability" class="muted contact-note">
+          {enabled
+            ? 'All fields are required.'
+            : 'The contact form is not available yet. Please check back soon.'}
         </p>
+        <fieldset disabled aria-describedby="contact-privacy">
+          <legend class="sr-only">Your enquiry</legend>
+          <label for="name">Your name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            class="contact-field"
+            required
+            maxlength="100"
+            autocomplete="name"
+            placeholder="Full name"
+          />
+          <label for="email">Work email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="contact-field"
+            required
+            maxlength="254"
+            autocomplete="email"
+            placeholder="you@company.com"
+          />
+          <label for="message">Tell us about your project</label>
+          <textarea
+            id="message"
+            name="message"
+            class="contact-field"
+            required
+            maxlength="5000"
+            rows="5"
+            placeholder="A brief description..."
+          ></textarea>
+          <div class="contact-honeypot" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <div id="contact-verification"></div>
+          <p id="contact-privacy" class="muted contact-note">
+            We will use your details to respond to your enquiry. Read our
+            <a href="/privacy">privacy notice</a>.
+          </p>
+          <button type="submit" class="btn btn-dark" disabled>
+            Send enquiry <span aria-hidden="true">→</span>
+          </button>
+        </fieldset>
+        <p
+          id="contact-status"
+          class="contact-status"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          tabindex="-1"
+        ></p>
+        <noscript>
+          <p class="muted contact-note">Please enable JavaScript to use this form.</p>
+        </noscript>
       </form>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  import '../scripts/contact-form';
+</script>
+
+<style>
+  .contact-form fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+  }
+  .contact-form label {
+    display: block;
+    margin-top: 20px;
+  }
+  .contact-form label:first-of-type {
+    margin-top: 0;
+  }
+  .contact-form button {
+    margin-top: 20px;
+  }
+  .contact-form button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .contact-form button:focus-visible {
+    outline: 2px solid #00b3c6;
+    outline-offset: 4px;
+  }
+  .contact-note {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  #contact-privacy {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  .contact-note a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .contact-status {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-top: 20px;
+  }
+  .contact-status:empty {
+    display: none;
+  }
+  .contact-honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+</style>

@@ -22,13 +22,13 @@ npm run preview
 
 ## Deploy
 
-Static Astro output goes into `dist/`. For Cloudflare Workers static assets, follow the current Cloudflare Astro/static-assets deployment instructions and configure a Workers project with assets directory `./dist`. Do not connect the production domain until the legal details and contact form are ready.
+The website is hosted on Cloudflare Pages. Build with `npm run build`, use `dist/` as the output directory, and deploy from repository root so Pages includes `functions/`. Follow [contact form setup](docs/contact-form.md) for Turnstile and Postmark configuration. Keep the form disabled until the privacy notice, spam protection and delivery checks are complete.
 
 ## Important pre-launch tasks
 
 - Confirm all published business and attribution claims.
 - Replace placeholder privacy notice with reviewed legal text and required company disclosures.
-- Connect a secure, spam-protected contact form backend; the preview form is intentionally disabled.
+- Configure and verify the Pages Function, Turnstile and Postmark delivery using [contact form setup](docs/contact-form.md); the form is disabled until configuration is complete.
 - Review accessibility, SEO, mobile layout and performance in a browser.
 - Approve favicon and illustrative assets; validate trademark/brand clearance.
 - Review externally hosted Google Fonts for privacy and performance, or self-host the approved font.
