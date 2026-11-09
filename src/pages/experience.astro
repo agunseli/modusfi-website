@@ -1,14 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const bankingExperience = [
+  {
+    title: 'Digital and internet banking',
+    description:
+      'Leadership of digital and internet banking delivery for a major bank in Turkey, managing an engineering team of more than 20 people and coordinating directly with the bank’s senior management. The work connected product requirements, technical implementation and decisions across the wider organisation.',
+  },
+  {
+    title: 'Core banking systems',
+    description:
+      'Experience leading the development of substantial core banking modules for a major bank, working within an established banking environment. This informs our understanding of the dependencies between core systems, digital channels and enterprise integrations.',
+  },
+  {
+    title: 'Payments and remittance',
+    description:
+      'Development experience with payment and remittance technology at Ecospend, covering the product and engineering considerations behind moving money between systems. This adds practical context to our work on payment journeys, transaction workflows and financial integrations.',
+  },
+];
 ---
 
 <BaseLayout
   title="Experience"
-  description="Explore the financial technology and engineering experience behind ModusFi."
+  description="Discover the founding experience behind ModusFi, from building an Open Banking platform at Ecospend to leading digital banking, core banking and financial technology delivery."
 >
   <section class="page-hero">
     <div class="container">
-      <div class="eyebrow">Experience & track record</div>
+      <div class="eyebrow">Experience &amp; track record</div>
       <h1>
         Built on experience.
         <br />
@@ -20,32 +38,183 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </p>
     </div>
   </section>
+
   <section class="section">
-    <div class="container simple-grid">
-      <article class="content-card">
-        <div class="eyebrow">Founding-team experience</div>
-        <h2 class="heading" style="font-size:32px">
-          Open Banking at scale
-        </h2>
-        <p class="lead">
-          Our founding team includes technology leadership experience at Ecospend, a UK Open Banking
-          fintech subsequently acquired by Trustly.
+    <div class="container grid-two experience-feature">
+      <div>
+        <div class="eyebrow">Open Banking · Ecospend</div>
+        <h2 class="heading">Building a platform from the ground up</h2>
+        <p class="lead experience-intro">
+          ModusFi’s founding experience includes combined technology and product leadership at
+          Ecospend, the UK Open Banking company subsequently acquired by Trustly.
         </p>
-      </article>
-      <article class="content-card">
-        <div class="eyebrow">Domain experience</div>
-        <h2 class="heading" style="font-size:32px">
-          Banking & enterprise systems
-        </h2>
+      </div>
+      <div class="experience-story">
         <p class="lead">
-          Experience across financial technology, banking systems and enterprise integration informs
-          how we approach complex software delivery.
+          That work began with establishing the engineering team and shaping the product direction.
+          It extended through platform architecture, detailed product decisions and development of
+          payment initiation and account information services.
         </p>
-      </article>
+        <p class="lead">
+          A unified bank integration layer handled differences between bank APIs through
+          bank-specific configuration. This gave the platform a consistent way to connect to banks
+          while accommodating the details of their individual implementations.
+        </p>
+        <p class="lead">
+          API-based services and a multi-tenant architecture were supported by a merchant dashboard
+          for managing access, credentials and integration settings, with facilities to try account
+          information and payment initiation before building an integration.
+        </p>
+      </div>
     </div>
-    <p class="container muted" style="margin-top:28px;font-size:13px">
-      The experience described here relates to the backgrounds of ModusFi's team members and should
-      not be interpreted as projects delivered by ModusFi itself.
-    </p>
+  </section>
+
+  <section class="section banking-experience">
+    <div class="container">
+      <div class="experience-section-heading">
+        <div class="eyebrow">Banking and payments</div>
+        <h2 class="heading">Banking systems, digital channels and payments</h2>
+        <p class="lead">
+          Our founding team’s background also spans the banking systems, digital channels and
+          payment technology that Open Banking connects with.
+        </p>
+      </div>
+      <div class="experience-list">
+        {bankingExperience.map(({ title, description }) => (
+          <article class="experience-row">
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-two experience-engagement">
+      <div>
+        <div class="eyebrow">Product, engineering and enterprise</div>
+        <h2 class="heading">Connecting technical decisions with business needs</h2>
+      </div>
+      <div class="experience-story">
+        <p class="lead">
+          At Ecospend, the founding team’s experience also included technical sales and detailed
+          product discussions with major enterprise and public-sector organisations. This required
+          translating complex requirements into a clear account of what the platform could support
+          and how an integration would work.
+        </p>
+        <p class="lead">
+          This combination of product ownership, engineering leadership and enterprise engagement
+          shapes how ModusFi approaches delivery: understanding the business need, making informed
+          architectural decisions and keeping implementation connected to the people who will use
+          and operate the solution.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="container grid-two experience-cta">
+      <h2 class="heading">Bring that experience to your next project</h2>
+      <div>
+        <p class="lead">
+          Talk to us about the platform, product or integration challenge you are working through.
+        </p>
+        <div class="experience-actions">
+          <a href="/contact" class="btn btn-primary">
+            Discuss a project <span aria-hidden="true">→</span>
+          </a>
+          <a href="/services/financial-technology-engineering" class="experience-service-link">
+            Financial Technology Engineering <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  .experience-feature,
+  .experience-engagement {
+    align-items: start;
+  }
+  .experience-feature .heading,
+  .experience-engagement .heading,
+  .experience-section-heading .heading {
+    margin: 14px 0 24px;
+  }
+  .experience-intro {
+    max-width: 510px;
+  }
+  .experience-story p:first-child {
+    margin-top: 0;
+  }
+  .experience-story p:last-child {
+    margin-bottom: 0;
+  }
+  .experience-story p + p {
+    margin-top: 22px;
+  }
+  .banking-experience {
+    background: #f3f8fb;
+  }
+  .experience-section-heading {
+    max-width: 800px;
+  }
+  .experience-list {
+    margin-top: 42px;
+    border-top: 1px solid #cddde8;
+  }
+  .experience-row {
+    display: grid;
+    grid-template-columns: 1fr 1.65fr;
+    gap: 42px;
+    padding: 30px 0;
+    border-bottom: 1px solid #cddde8;
+  }
+  .experience-row h3 {
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .experience-row p {
+    margin: 0;
+    color: #43566b;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+  .experience-cta {
+    align-items: center;
+  }
+  .experience-cta .heading {
+    margin: 0;
+  }
+  .experience-cta .lead {
+    color: #d9e8f1;
+    margin: 0 0 24px;
+  }
+  .experience-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .experience-service-link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .experience-actions a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 5px;
+  }
+  @media (max-width: 680px) {
+    .experience-row {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+  }
+</style>
