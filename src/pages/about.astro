@@ -1,10 +1,23 @@
 ---
+import FounderCard from '../components/FounderCard.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import alisanPortrait from '../assets/founders/alisan-gunseli.png';
+import gerryPortrait from '../assets/founders/gerry-griffin.png';
+
+const founders = [
+  { name: 'Alişan Günseli', role: 'Technology Lead', portrait: alisanPortrait, portraitScale: 1 },
+  {
+    name: 'Gerry Griffin',
+    role: 'Customer Relations',
+    portrait: gerryPortrait,
+    portraitScale: 0.9,
+  },
+];
 ---
 
 <BaseLayout
   title="About"
-  description="Learn about ModusFi's engineering philosophy, delivery approach and financial technology experience."
+  description="Meet ModusFi’s founders and learn about our engineering philosophy, delivery approach and financial technology experience."
 >
   <section class="page-hero">
     <div class="container">
@@ -54,4 +67,52 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
   </section>
+  <section id="founders" class="section founders-section" aria-labelledby="founders-heading">
+    <div class="container">
+      <div class="founders-introduction">
+        <div class="eyebrow">Our founders</div>
+        <h2 id="founders-heading" class="heading">
+          The people behind ModusFi
+        </h2>
+      </div>
+      <div class="founders-grid">
+        {founders.map((founder) => (
+          <FounderCard
+            name={founder.name}
+            role={founder.role}
+            portrait={founder.portrait}
+            portraitScale={founder.portraitScale}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .founders-section {
+    scroll-margin-top: 80px;
+  }
+  .founders-introduction {
+    max-width: 760px;
+    margin: 0 auto 36px;
+    text-align: center;
+  }
+  .founders-introduction .heading {
+    margin: 14px 0 0;
+  }
+  .founders-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+    max-width: 780px;
+    margin-inline: auto;
+  }
+  @media (max-width: 680px) {
+    .founders-grid {
+      grid-template-columns: minmax(0, 340px);
+      justify-content: center;
+      gap: 36px;
+    }
+  }
+</style>

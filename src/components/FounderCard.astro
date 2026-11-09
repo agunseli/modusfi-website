@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  name: string;
+  role: string;
+  portrait: ImageMetadata;
+  portraitScale?: number;
+}
+
+const { name, role, portrait, portraitScale = 1 } = Astro.props;
+---
+
+<article class="content-card founder-card">
+  <div class="founder-portrait" style={`--portrait-scale: ${portraitScale}`}>
+    <Image
+      src={portrait}
+      alt={`Portrait of ${name}`}
+      width={800}
+      height={1000}
+      widths={[320, 480, 800]}
+      sizes="(max-width: 379px) calc(100vw - 90px), (max-width: 680px) 290px, (max-width: 844px) calc((100vw - 196px) / 2), 324px"
+      fit="cover"
+      position="center"
+      format="webp"
+      quality={85}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="founder-details">
+    <h3>{name}</h3>
+    <p class="founder-role">{role}</p>
+  </div>
+  <slot />
+</article>
+
+<style>
+  .founder-card {
+    min-width: 0;
+    padding: 24px;
+  }
+  .founder-portrait {
+    aspect-ratio: 4 / 5;
+    position: relative;
+    overflow: hidden;
+  }
+  .founder-portrait img {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: calc(100% * var(--portrait-scale));
+    height: calc(100% * var(--portrait-scale));
+    transform: translateX(-50%);
+    object-fit: cover;
+  }
+  .founder-details {
+    text-align: center;
+    margin-top: 24px;
+  }
+  .founder-details h3 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 6px;
+  }
+  .founder-role {
+    color: #43566b;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>
