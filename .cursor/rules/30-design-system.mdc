@@ -1,6 +1,6 @@
 ---
 description: ModusFi brand and visual design guidance
-globs: "**/*.{astro,css,svg}"
+globs: '**/*.{astro,css,svg}'
 alwaysApply: false
 ---
 

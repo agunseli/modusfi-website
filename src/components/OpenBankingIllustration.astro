@@ -1,0 +1,222 @@
+<figure
+  class="banking-illustration"
+  aria-label="Illustrative Open Banking integration architecture"
+>
+  <div class="client-products">
+    Client products <span>API access</span>
+  </div>
+  <div class="connector" aria-hidden="true"></div>
+
+  <div class="platform">
+    <div class="platform-label">Open Banking platform</div>
+    <div class="platform-services">
+      <div>
+        <span class="service-mark" aria-hidden="true">
+          ↗
+        </span>{' '}
+        Payment initiation
+      </div>
+      <div>
+        <span class="service-mark" aria-hidden="true">
+          ≋
+        </span>{' '}
+        Account information
+      </div>
+    </div>
+    <div class="platform-controls">
+      <span>Consent handling</span>
+      <span>Tenant access</span>
+    </div>
+    <div class="integration">
+      <strong>Unified bank integration</strong>
+      <span class="configuration-label">Bank-specific configuration at runtime</span>
+      <div class="bank-configurations" aria-label="Configuration selected for each bank">
+        {['A', 'B', 'C'].map((bank) => (
+          <div class="configuration">
+            <div class:list={['configuration-marks', `configuration-${bank}`]} aria-hidden="true">
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+            <span>Config {bank}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="bank-connections" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="banks" aria-label="Illustrative external banks">
+    {['A', 'B', 'C'].map((bank) => (
+      <div class="bank">
+        <span class="bank-port" aria-hidden="true"></span>Bank {bank}
+      </div>
+    ))}
+  </div>
+  <figcaption>Illustrative integration architecture</figcaption>
+</figure>
+
+<style>
+  .banking-illustration {
+    margin: 0;
+    color: #e5f0f6;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .client-products {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    width: 78%;
+    margin-inline: auto;
+    padding: 12px 18px;
+    border: 1px solid #5c7d92;
+    border-radius: 8px;
+  }
+  .client-products span {
+    color: #a9dce3;
+  }
+  .connector {
+    width: 1px;
+    height: 22px;
+    background: #7295a9;
+    margin-inline: auto;
+  }
+  .platform {
+    border: 1px solid #5c7d92;
+    border-radius: 12px;
+    padding: 22px;
+    background: #142b41;
+  }
+  .platform-label {
+    color: #e5f0f6;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .platform-services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .platform-services > div {
+    border-bottom: 1px solid #506c81;
+    padding-bottom: 14px;
+  }
+  .service-mark {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 24px;
+    line-height: 1;
+    color: #20d5e2;
+  }
+  .platform-controls {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding: 14px 0 18px;
+    color: #c0d4e1;
+    font-size: 12px;
+  }
+  .integration {
+    padding: 18px;
+    background: #103e4b;
+    border: 1px solid #208e9e;
+    border-radius: 8px;
+  }
+  .integration strong {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    display: block;
+  }
+  .configuration-label {
+    display: block;
+    color: #c3dce5;
+    font-size: 12px;
+    margin-top: 6px;
+  }
+  .bank-configurations,
+  .banks,
+  .bank-connections {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .bank-configurations {
+    margin-top: 18px;
+  }
+  .configuration {
+    padding-top: 12px;
+    border-top: 1px solid #4a7b86;
+    font-size: 11px;
+    color: #c3dce5;
+  }
+  .configuration-marks {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 10px;
+    margin-bottom: 6px;
+  }
+  .configuration-marks i {
+    height: 3px;
+    width: 17px;
+    background: #7ca3b0;
+    border-radius: 2px;
+  }
+  .configuration-marks i:nth-child(2) {
+    background: #20d5e2;
+    width: 9px;
+  }
+  .configuration-B i:first-child,
+  .configuration-C i:last-child {
+    width: 7px;
+  }
+  .bank-connections span {
+    display: block;
+    width: 1px;
+    height: 28px;
+    background: #7295a9;
+    margin-inline: auto;
+  }
+  .bank {
+    border-top: 1px solid #7295a9;
+    padding-top: 12px;
+    text-align: center;
+  }
+  .bank-port {
+    display: block;
+    height: 5px;
+    width: 5px;
+    margin: -15px auto 10px;
+    border-radius: 50%;
+    background: #20d5e2;
+  }
+  figcaption {
+    margin-top: 20px;
+    font-size: 11px;
+    color: #b4cbd9;
+  }
+  @media (max-width: 420px) {
+    .platform {
+      padding: 16px;
+    }
+    .integration {
+      padding: 14px;
+    }
+    .integration strong {
+      font-size: 17px;
+    }
+    .platform-services {
+      gap: 12px;
+    }
+  }
+</style>

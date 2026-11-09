@@ -1,1 +1,30 @@
-<footer class="footer"><div class="container"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:35px;flex-wrap:wrap"><div><a href="/"><img src="/images/logo-dark.svg" alt="modusfi." width="155" height="45" /></a><p style="max-width:360px;line-height:1.7;font-size:14px;margin-top:18px">Complex challenges. Intelligent engineering.<br/>Technology engineering with financial services specialisation.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/services">Services</a><a href="/expertise">Expertise</a><a href="/experience">Experience</a><a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy">Privacy</a></nav></div><div style="border-top:1px solid #29415a;margin-top:50px;padding-top:22px;font-size:12px;color:#93a8b9">© {new Date().getFullYear()} ModusFi. Website preview — legal company details to be confirmed.</div></div></footer>
+---
+import { footerNavigation, navigationCurrent } from '../data/navigation';
+---
+
+<footer class="footer">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:35px;flex-wrap:wrap">
+      <div>
+        <a href="/">
+          <img src="/images/logo-dark.svg" alt="modusfi." width="155" height="45" />
+        </a>
+        <p style="max-width:360px;line-height:1.7;font-size:14px;margin-top:18px">
+          Complex challenges. Intelligent engineering.
+          <br />
+          Technology engineering with financial services specialisation.
+        </p>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        {footerNavigation.map((item) => (
+          <a href={item.href} aria-current={navigationCurrent(Astro.url.pathname, item.href)}>
+            {'footerLabel' in item ? item.footerLabel : item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+    <div style="border-top:1px solid #29415a;margin-top:50px;padding-top:22px;font-size:12px;color:#93a8b9">
+      © {new Date().getFullYear()} ModusFi.
+    </div>
+  </div>
+</footer>

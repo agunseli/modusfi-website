@@ -1,2 +1,83 @@
-<header class="site-header"><div class="container header-inner"><a href="/" aria-label="ModusFi homepage"><img class="logo" src="/images/logo-light.svg" alt="modusfi." width="157" height="42" /></a><nav class="nav" aria-label="Main navigation"><a href="/services">Services</a><a href="/expertise">Expertise</a><a href="/experience">Experience</a><a href="/about">About</a><a href="/contact" class="btn btn-dark" style="color:white">Contact us <span aria-hidden="true">↗</span></a></nav><button class="mobile-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu" data-menu-button><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div><nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation"><a href="/services">Services</a><a href="/expertise">Expertise</a><a href="/experience">Experience</a><a href="/about">About</a><a href="/contact">Contact us ↗</a></nav></header>
-<script>const button=document.querySelector<HTMLButtonElement>('[data-menu-button]');const menu=document.querySelector<HTMLElement>('#mobile-menu');button?.addEventListener('click',()=>{const open=menu?.classList.toggle('open')??false;button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Close navigation':'Open navigation');});</script>
+---
+import { primaryNavigation, navigationCurrent } from '../data/navigation';
+const pathname = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" aria-label="ModusFi homepage">
+      <img class="logo" src="/images/logo-light.svg" alt="modusfi." width="157" height="42" />
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      {primaryNavigation.map((item) => (
+        <a
+          href={item.href}
+          class:list={[{ 'btn btn-dark': item.href === '/contact' }]}
+          aria-current={navigationCurrent(pathname, item.href)}
+        >
+          {item.label}
+          {item.href === '/contact' && <span aria-hidden="true">↗</span>}
+        </a>
+      ))}
+    </nav>
+    <button
+      class="mobile-toggle"
+      type="button"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-button
+    >
+      <svg
+        width="25"
+        height="25"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+    </button>
+  </div>
+  <nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation">
+    {primaryNavigation.map((item) => (
+      <a href={item.href} aria-current={navigationCurrent(pathname, item.href)}>
+        {item.label} {item.href === '/contact' && <span aria-hidden="true">↗</span>}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-menu-button]');
+  const menu = document.querySelector<HTMLElement>('#mobile-menu');
+
+  function setMenuOpen(open: boolean) {
+    menu?.classList.toggle('open', open);
+    button?.setAttribute('aria-expanded', String(open));
+    button?.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  }
+
+  button?.addEventListener('click', () => {
+    setMenuOpen(button.getAttribute('aria-expanded') !== 'true');
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && button?.getAttribute('aria-expanded') === 'true') {
+      setMenuOpen(false);
+      button.focus();
+    }
+  });
+
+  menu?.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('a')) setMenuOpen(false);
+  });
+
+  // Clear mobile state when switching to the desktop layout.
+  matchMedia('(min-width: 681px)').addEventListener('change', (event) => {
+    if (event.matches) setMenuOpen(false);
+  });
+</script>

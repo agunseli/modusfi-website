@@ -1,4 +1,5 @@
 ---
+import ServiceIllustration from '../../components/ServiceIllustration.astro';
 import ServiceLayout from '../../layouts/ServiceLayout.astro';
 import { services } from '../../data/services';
 
@@ -79,8 +80,11 @@ const deliverySteps = [
 
 <ServiceLayout
   service={services.software}
+  heroLayout="reversed"
   summary="We design and develop software products and platforms, from early-stage concepts to enterprise applications. Product thinking and hands-on engineering connect the business need to the working solution."
 >
+  <ServiceIllustration slot="hero-visual" service="software" />
+
   <section slot="introduction" class="section">
     <div class="container grid-two software-introduction">
       <h2 class="heading">
@@ -288,8 +292,8 @@ const deliverySteps = [
     margin: 36px 0 0;
   }
   .software-delivery-steps > li {
-    border-left: 1px solid #cddde8;
-    padding-left: 22px;
+    border-top: 2px solid #cddde8;
+    padding-top: 22px;
   }
   .step-number {
     color: #43566b;

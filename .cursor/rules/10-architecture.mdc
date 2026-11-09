@@ -1,6 +1,6 @@
 ---
 description: Astro architecture, TypeScript, Tailwind and deployment conventions
-globs: "**/*.{astro,ts,tsx,js,mjs,css,json}"
+globs: '**/*.{astro,ts,tsx,js,mjs,css,json}'
 alwaysApply: false
 ---
 

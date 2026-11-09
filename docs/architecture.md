@@ -1,4 +1,4 @@
-# ModusFi Website — Architecture
+# ModusFi Website: Architecture
 
 ## Overview
 
@@ -27,12 +27,12 @@ These are design assumptions from the current project discussion; always inspect
 `/services` remains the overview. Homepage cards and overview links lead to four static routes:
 
 - `/services/software-product-engineering`
-- `/services/ai-intelligent-automation`
+- `/services/ai-intelligent-systems`
 - `/services/cloud-platform-modernisation`
 - `/services/financial-technology-engineering`
 
-The AI service is titled “AI & Intelligent Systems”; its existing `ai-intelligent-automation` URL
-is retained so that links remain stable.
+The AI service is titled “AI & Intelligent Systems”. Its previous URL redirects permanently to
+the current route through `public/_redirects`.
 
 `src/data/services.ts` holds the shared service titles, slugs, short homepage descriptions, existing
 overview descriptions and capabilities. Homepage and overview ordering are defined separately to
@@ -46,9 +46,21 @@ copy, optimised imagery and semantic diagrams in those individual pages as conte
 do not add empty visual placeholders or client-side frameworks for this purpose.
 
 Detailed content is maintained in the individual service pages. The shared layout supports named
-introduction and call-to-action slots as well as service-specific body sections. Additional graphics
-can be added as they are approved. The partner introduction PDF is background reference; its claims
+introduction and call-to-action slots as well as service-specific body sections. The `hero-visual` slot accepts static service illustrations, with `heroLayout` selecting split,
+reversed or wide compositions. `ServiceIcon.astro` supplies related Home and overview symbols.
+Financial Technology has its own integration figure; `ServiceIllustration.astro` contains the AI,
+Software and Cloud illustrations. These use static HTML/CSS and do not require client scripts. The partner introduction PDF is background reference; its claims
 and assets are not automatically approved for publication.
+
+## Navigation and discovery
+
+`src/data/navigation.ts` defines shared header, mobile and footer links. Current pages use
+`aria-current="page"`; Services uses `aria-current="location"` on service detail pages.
+The mobile menu supports Escape, restores focus to its toggle and resets at the desktop breakpoint.
+
+`src/pages/sitemap.xml.ts` generates a static sitemap from the current Astro page files during
+build. `public/robots.txt` advertises `/sitemap.xml`. If dynamic routes are added, expand their
+concrete URLs in sitemap generation as well.
 
 ## Contact form
 

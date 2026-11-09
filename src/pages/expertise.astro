@@ -14,7 +14,7 @@ const areas = [
     'Security & Resilience',
     'Identity and access, secure APIs, encryption, auditability and operational resilience.',
   ],
-  ['Applied AI', 'AI-assisted analysis, intelligent automation and evidence-driven workflows.'],
+  ['Applied AI', 'AI-native systems, intelligent agents, applied research, and human oversight.'],
   [
     'Platform Architecture',
     'Distributed systems, cloud architecture, data and enterprise integration.',
@@ -41,7 +41,9 @@ const areas = [
       {areas.map((a, i) => (
         <article class="content-card">
           <div class="eyebrow">0{i + 1} / Expertise</div>
-          <h2 style="font-size:27px;letter-spacing:-.04em;margin:18px 0">{a[0]}</h2>
+          <h2 class="heading" style="font-size:27px;margin:18px 0">
+            {a[0]}
+          </h2>
           <p class="lead">{a[1]}</p>
         </article>
       ))}

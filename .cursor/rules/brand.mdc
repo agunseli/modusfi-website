@@ -2,6 +2,7 @@
 description: ModusFi website design and content rules
 alwaysApply: true
 ---
+
 - Brand wordmark is lowercase `modusfi.`. Official name in prose is ModusFi.
 - Primary colours: navy #101D32, turquoise #00B3C6, light background #F5F7FA.
 - Position as a technology engineering company with financial services specialisation, not solely a fintech or AI company.

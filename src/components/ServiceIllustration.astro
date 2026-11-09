@@ -1,0 +1,445 @@
+---
+interface Props {
+  service: 'ai' | 'software' | 'cloud';
+}
+const { service } = Astro.props;
+---
+
+<figure class:list={['service-illustration', `illustration-${service}`]}>
+  {service === 'ai' && (
+    <>
+      <div
+        class="intelligence-map"
+        aria-label="Agents connect knowledge and tools, with human oversight across their work"
+      >
+        <div class="knowledge node">
+          <div class="document-marks" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <strong>Knowledge</strong>
+          <span>Context &amp; evidence</span>
+        </div>
+        <div class="tools node">
+          <div class="tool-marks" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <strong>Tools</strong>
+          <span>APIs &amp; actions</span>
+        </div>
+        <div class="agent-branches" aria-hidden="true"></div>
+        <div class="agents node">
+          <div class="agent-marks" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <strong>Agents &amp; frameworks</strong>
+          <span>Coordinated work</span>
+        </div>
+        <div class="oversight">
+          <span class="oversight-mark" aria-hidden="true"></span>Human oversight
+        </div>
+      </div>
+      <figcaption>Knowledge, tools and people working together</figcaption>
+    </>
+  )}
+  {service === 'software' && (
+    <>
+      <div
+        class="product-composition"
+        aria-label="A conceptual product composed of interfaces, services, APIs, data, integrations and workflows on maintainable architecture"
+      >
+        <div class="product-modules">
+          {['Interfaces', 'Services', 'APIs', 'Data', 'Integrations', 'Workflows'].map(
+            (module, index) => (
+              <div class:list={['product-module', { 'module-accent': index === 1 || index === 4 }]}>
+                <div class="module-ports" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                </div>
+                <span>{module}</span>
+              </div>
+            ),
+          )}
+        </div>
+        <div class="architecture-foundation">
+          <span class="foundation-rule" aria-hidden="true"></span>Maintainable architecture
+        </div>
+      </div>
+      <figcaption>Connected capabilities, clear foundations</figcaption>
+    </>
+  )}
+  {service === 'cloud' && (
+    <>
+      <div
+        class="platform-evolution"
+        aria-label="A conceptual staged transition from an existing estate to an organised platform, supported by automated delivery, observability, security and recovery"
+      >
+        <div class="existing-estate">
+          <div class="estate-modules" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <strong>Existing estate</strong>
+        </div>
+        <div class="transition">
+          <span>Staged transition</span>
+          <div class="transition-line" aria-hidden="true"></div>
+        </div>
+        <div class="target-platform">
+          <div class="application-layer">
+            <span>Applications</span>
+            <span>Services</span>
+            <span>Data</span>
+          </div>
+          <div class="delivery-layer">
+            <span class="delivery-marks" aria-hidden="true">
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+            Automated delivery
+          </div>
+          <div class="operations-layer">
+            <span>Observability</span>
+            <span>Security</span>
+            <span>Recovery</span>
+          </div>
+          <strong>Platform foundations</strong>
+        </div>
+      </div>
+      <figcaption>Illustrative platform evolution</figcaption>
+    </>
+  )}
+</figure>
+
+<style>
+  .service-illustration {
+    margin: 0;
+    color: #e5f0f6;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  figcaption {
+    margin-top: 24px;
+    color: #b4cbd9;
+    font-size: 11px;
+  }
+  .intelligence-map {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+    padding-top: 16px;
+  }
+  .node {
+    position: relative;
+    padding: 22px;
+    border: 1px solid #5c7d92;
+    border-radius: 10px;
+    background: #142b41;
+  }
+  .node strong,
+  .node > span {
+    display: block;
+  }
+  .node strong {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
+  .node > span {
+    color: #c3dce5;
+    font-size: 12px;
+  }
+  .document-marks,
+  .tool-marks {
+    height: 32px;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 16px;
+  }
+  .document-marks {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .document-marks span {
+    height: 2px;
+    width: 40px;
+    background: #8badbd;
+  }
+  .document-marks span:last-child {
+    width: 24px;
+    background: #20d5e2;
+  }
+  .tool-marks {
+    align-items: center;
+  }
+  .tool-marks span {
+    width: 9px;
+    height: 20px;
+    border: 1px solid #8badbd;
+    border-radius: 2px;
+  }
+  .tool-marks span:nth-child(2) {
+    height: 30px;
+    border-color: #20d5e2;
+  }
+  .agent-branches {
+    grid-column: 1 / -1;
+    height: 40px;
+    width: 54%;
+    margin: 0 auto;
+    border-inline: 1px solid #7295a9;
+    border-bottom: 1px solid #7295a9;
+    position: relative;
+  }
+  .agent-branches::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    height: 24px;
+    width: 1px;
+    background: #7295a9;
+  }
+  .agents {
+    grid-column: 1 / -1;
+    width: 78%;
+    margin: 24px auto 0;
+    background: #103e4b;
+    border-color: #208e9e;
+    text-align: center;
+    padding: 24px 16px;
+  }
+  .agents strong {
+    font-size: 21px;
+  }
+  .agent-marks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 16px;
+    gap: 16px;
+  }
+  .agent-marks span {
+    height: 9px;
+    width: 9px;
+    border: 1px solid #8badbd;
+    border-radius: 50%;
+  }
+  .agent-marks span:nth-child(2) {
+    height: 15px;
+    width: 15px;
+    border-color: #20d5e2;
+  }
+  .oversight {
+    grid-column: 1 / -1;
+    text-align: center;
+    border-bottom: 1px solid #7295a9;
+    padding: 26px 0 14px;
+  }
+  .oversight-mark {
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    background: #20d5e2;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  .product-composition {
+    padding: 36px 8px 14px;
+  }
+  .product-modules {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    transform: perspective(900px) rotateY(-10deg) rotateX(8deg);
+    transform-origin: center;
+  }
+  .product-module {
+    aspect-ratio: 1.1;
+    border: 1px solid #5c7d92;
+    border-radius: 8px;
+    padding: 18px 12px;
+    background: #142b41;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .module-accent {
+    background: #103e4b;
+    border-color: #208e9e;
+  }
+  .module-ports {
+    display: flex;
+    gap: 5px;
+  }
+  .module-ports span {
+    width: 12px;
+    height: 3px;
+    background: #8badbd;
+  }
+  .module-accent .module-ports span:first-child {
+    background: #20d5e2;
+  }
+  .architecture-foundation {
+    text-align: center;
+    margin-top: 32px;
+  }
+  .foundation-rule {
+    display: block;
+    height: 6px;
+    border-top: 1px solid #20d5e2;
+    border-bottom: 1px solid #5c7d92;
+    margin-bottom: 16px;
+  }
+  .platform-evolution {
+    display: grid;
+    grid-template-columns: 0.8fr 0.65fr 1.55fr;
+    gap: 40px;
+    align-items: center;
+    padding: 16px 0;
+  }
+  .existing-estate,
+  .target-platform {
+    min-width: 0;
+  }
+  .existing-estate > strong,
+  .target-platform > strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 20px;
+    text-align: center;
+    color: #c3dce5;
+  }
+  .estate-modules {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 12px;
+    align-items: end;
+    max-width: 230px;
+    margin-inline: auto;
+  }
+  .estate-modules span {
+    background: #142b41;
+    border: 1px solid #5c7d92;
+    height: 48px;
+    border-radius: 5px;
+  }
+  .estate-modules span:nth-child(2) {
+    height: 76px;
+  }
+  .estate-modules span:nth-child(3) {
+    height: 32px;
+  }
+  .estate-modules span:nth-child(4) {
+    height: 54px;
+  }
+  .transition {
+    color: #c3dce5;
+    text-align: center;
+    font-size: 12px;
+  }
+  .transition-line {
+    height: 1px;
+    background: #20d5e2;
+    margin-top: 20px;
+    position: relative;
+  }
+  .transition-line::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-top: 1px solid #20d5e2;
+    border-right: 1px solid #20d5e2;
+    position: absolute;
+    right: 1px;
+    top: -4px;
+    transform: rotate(45deg);
+  }
+  .application-layer,
+  .delivery-layer,
+  .operations-layer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #5c7d92;
+    background: #142b41;
+  }
+  .application-layer {
+    background: #103e4b;
+    border-color: #208e9e;
+    margin-bottom: 10px;
+  }
+  .operations-layer {
+    margin-top: 10px;
+    transform: translateX(-12px);
+  }
+  .delivery-marks {
+    display: flex;
+    gap: 6px;
+  }
+  .delivery-marks i {
+    width: 5px;
+    height: 5px;
+    background: #20d5e2;
+  }
+  @media (max-width: 680px) {
+    .platform-evolution {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .estate-modules {
+      max-width: 200px;
+    }
+    .transition-line {
+      width: 1px;
+      height: 30px;
+      margin: 12px auto 0;
+    }
+    .transition-line::after {
+      top: auto;
+      bottom: 1px;
+      right: -3px;
+      transform: rotate(135deg);
+    }
+    .operations-layer {
+      transform: none;
+    }
+    .product-modules {
+      gap: 12px;
+      transform: none;
+    }
+    .product-module {
+      padding: 12px 8px;
+      font-size: 12px;
+    }
+  }
+  @media (max-width: 380px) {
+    .intelligence-map {
+      gap: 0 16px;
+    }
+    .node {
+      padding: 16px 12px;
+    }
+    .agents {
+      width: 90%;
+    }
+    .product-modules {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,6 +1,6 @@
 ---
 description: Astro, TypeScript, CSS and maintainability conventions
-globs: "**/*.{astro,ts,tsx,js,mjs,css}"
+globs: '**/*.{astro,ts,tsx,js,mjs,css}'
 alwaysApply: false
 ---
 
