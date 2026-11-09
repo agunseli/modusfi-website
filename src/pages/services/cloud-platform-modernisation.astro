@@ -1,4 +1,5 @@
 ---
+import ServiceIllustration from '../../components/ServiceIllustration.astro';
 import ServiceLayout from '../../layouts/ServiceLayout.astro';
 import { services } from '../../data/services';
 
@@ -79,8 +80,11 @@ const deliverySteps = [
 
 <ServiceLayout
   service={services.cloud}
+  heroLayout="wide"
   summary="We help organisations modernise applications and platforms, improve system architecture and build the foundations for reliable operation and future growth."
 >
+  <ServiceIllustration slot="hero-visual" service="cloud" />
+
   <section slot="introduction" class="section">
     <div class="container grid-two cloud-introduction">
       <h2 class="heading">
@@ -89,7 +93,7 @@ const deliverySteps = [
         Build for what comes next.
       </h2>
       <p class="lead">
-        We connect business priorities with practical engineering decisions—assessing the existing
+        We connect business priorities with practical engineering decisions, assessing the existing
         estate, defining the target platform and delivering the changes through to ongoing
         operation.
       </p>
@@ -109,9 +113,11 @@ const deliverySteps = [
       </div>
       <div class="cloud-capability-grid">
         {capabilities.map((capability) => (
-          <article class="content-card cloud-capability-card">
-            <h3>{capability.title}</h3>
-            <p>{capability.introduction}</p>
+          <article class="cloud-capability-card">
+            <div>
+              <h3>{capability.title}</h3>
+              <p>{capability.introduction}</p>
+            </div>
             <ul>
               {capability.items.map((item) => (
                 <li>{item}</li>
@@ -225,13 +231,15 @@ const deliverySteps = [
     margin-top: 18px;
   }
   .cloud-capability-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
     margin-top: 36px;
+    border-top: 1px solid #cddde8;
   }
   .cloud-capability-card {
-    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 56px;
+    padding: 32px 0;
+    border-bottom: 1px solid #cddde8;
     color: #43566b;
     font-size: 16px;
     line-height: 1.75;
@@ -250,7 +258,7 @@ const deliverySteps = [
   .cloud-capability-card ul {
     list-style: disc;
     padding-left: 20px;
-    margin: 20px 0 0;
+    margin: 0;
   }
   .cloud-capability-card li + li {
     margin-top: 10px;
@@ -329,8 +337,9 @@ const deliverySteps = [
     outline-offset: 4px;
   }
   @media (max-width: 900px) {
-    .cloud-capability-grid {
+    .cloud-capability-card {
       grid-template-columns: 1fr;
+      gap: 20px;
     }
     .cloud-delivery-steps {
       grid-template-columns: repeat(2, minmax(0, 1fr));

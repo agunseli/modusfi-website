@@ -36,11 +36,13 @@ fi
 
 if [[ -x node_modules/.bin/prettier ]]; then
   echo '== Prettier check =='
-  # Restrict to tracked source/config files; don't format build output or third-party files.
+  # Check existing tracked and new source files; exclude deleted and ignored files.
   files=()
   while IFS= read -r -d '' file; do
-    files+=("$file")
-  done < <(git ls-files -z -- '*.astro' '*.css' '*.ts' '*.tsx' '*.js' '*.mjs' '*.json' '*.md' '*.mdc' ':!:package-lock.json')
+    if [[ -f "$file" ]]; then
+      files+=("$file")
+    fi
+  done < <(git ls-files --cached --others --exclude-standard -z -- '*.astro' '*.css' '*.ts' '*.tsx' '*.js' '*.mjs' '*.json' '*.md' '*.mdc' ':!:package-lock.json')
   if (( ${#files[@]} > 0 )); then
     node_modules/.bin/prettier --check -- "${files[@]}"
   else

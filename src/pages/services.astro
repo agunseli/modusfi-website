@@ -1,4 +1,5 @@
 ---
+import ServiceIcon from '../components/ServiceIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { overviewServices } from '../data/services';
 ---
@@ -21,8 +22,13 @@ import { overviewServices } from '../data/services';
     <div class="container simple-grid">
       {overviewServices.map((s, i) => (
         <article class="content-card service-overview-card">
-          <div class="eyebrow">0{i + 1} / Service</div>
-          <h2 style="font-size:29px;letter-spacing:-.045em;margin:20px 0">{s.title}</h2>
+          <div class="service-overview-label">
+            <div class="eyebrow">0{i + 1} / Service</div>
+            <ServiceIcon name={s.icon} size={32} />
+          </div>
+          <h2 class="heading" style="font-size:29px;margin:20px 0">
+            {s.title}
+          </h2>
           <p class="lead">{s.description}</p>
           <p class="muted" style="font-size:14px;line-height:1.8;margin-top:25px">
             {s.capabilities.join(' · ')}
@@ -55,6 +61,13 @@ import { overviewServices } from '../data/services';
 </BaseLayout>
 
 <style>
+  .service-overview-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--text-turquoise);
+  }
   .service-overview-card {
     display: flex;
     flex-direction: column;

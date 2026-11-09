@@ -2,12 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { homeServices } from '../data/services';
 
-const icons = {
-  code: 'M5 8 1 12l4 4M19 8l4 4-4 4M14 4l-4 16',
-  ai: 'M12 3v18M3 12h18M6 6l12 12M18 6 6 18',
-  cloud: 'M7 18h12a4 4 0 0 0 .3-8A7 7 0 0 0 6 9a4.5 4.5 0 0 0 1 9h6',
-  bank: 'M3 10h18M5 10v10M10 10v10M15 10v10M20 10v10M2 21h20M2 9l10-6 10 6',
-};
+import ServiceIcon from '../components/ServiceIcon.astro';
 ---
 
 <BaseLayout
@@ -71,19 +66,7 @@ const icons = {
             class="card service-card"
             aria-label={`Learn about ${s.title}`}
           >
-            <svg
-              width="42"
-              height="42"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d={icons[s.icon]} />
-            </svg>
+            <ServiceIcon name={s.icon} />
 
             <h3>{s.title}</h3>
 

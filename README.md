@@ -1,4 +1,4 @@
-# ModusFi website — initial implementation
+# ModusFi website: initial implementation
 
 Responsive Astro website based on the approved ModusFi brand and homepage direction. **Preview, not yet production-ready.**
 

@@ -1,0 +1,170 @@
+---
+import ServiceIllustration from '../../components/ServiceIllustration.astro';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { services } from '../../data/services';
+
+const capabilities = [
+  {
+    title: 'AI agents and frameworks',
+    description:
+      'We engineer agents that use business information and software tools to carry out complex tasks. We build the frameworks that coordinate their work, preserve context and enable agents to act on people’s behalf and work alongside them.',
+  },
+  {
+    title: 'Intelligent workflows',
+    description:
+      'We build workflows that interpret information, apply business rules and carry work through multiple stages. This includes document processing, research and operational tasks across existing systems, with review and exception handling built in.',
+  },
+  {
+    title: 'Knowledge and decision support',
+    description:
+      'We connect intelligent systems to organisational knowledge so they can find relevant information, retain context and produce answers linked to supporting evidence. This helps people work through complex information and make informed decisions.',
+  },
+];
+---
+
+<ServiceLayout
+  service={services.ai}
+  heroLayout="split"
+  heading="Intelligent systems at the core"
+  summary="We combine applied research with deep engineering expertise to push the boundaries of what intelligent systems can do. Our approach is AI-native at the core, and turns emerging technologies into reliable solutions that improve how organisations analyse information, make decisions, and operate."
+>
+  <ServiceIllustration slot="hero-visual" service="ai" />
+
+  <section slot="introduction" class="section">
+    <div class="container grid-two ai-introduction">
+      <h2 class="heading">AI-native engineering</h2>
+      <p class="lead">
+        AI is fundamental to how we research, design, build and improve software. We develop the
+        underlying architecture and frameworks alongside the products, with security, reliability
+        and human oversight forming the basis of our solutions.
+      </p>
+    </div>
+  </section>
+
+  <section class="section expertise">
+    <div class="container">
+      <div class="ai-section-introduction">
+        <h2 class="heading">What we build</h2>
+      </div>
+      <div class="ai-capability-grid">
+        {capabilities.map((capability) => (
+          <article class="content-card ai-capability-card">
+            <h3>{capability.title}</h3>
+            <p>{capability.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section ai-delivery-section">
+    <div class="container ai-delivery">
+      <h2 class="heading">Applied research, carried into delivery</h2>
+      <p class="lead">
+        Our applied research develops new ways for models, agents and tools to work together. We
+        test those methods against real tasks, measuring accuracy, task completion and running
+        costs. The results inform both the products we deliver and the methods we use to build them.
+      </p>
+    </div>
+  </section>
+
+  <section slot="call-to-action" class="section cta">
+    <div class="container grid-two ai-cta">
+      <h2 class="heading">Discuss your project</h2>
+      <div>
+        <p class="lead">
+          Talk to our team about the product, workflow or engineering challenge you have in mind.
+        </p>
+        <div class="ai-actions">
+          <a href="/contact" class="btn btn-primary">
+            Discuss a project <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</ServiceLayout>
+
+<style>
+  .ai-introduction,
+  .ai-cta {
+    align-items: center;
+  }
+  .ai-introduction .heading,
+  .ai-introduction .lead,
+  .ai-delivery .heading,
+  .ai-cta .heading {
+    margin: 0;
+  }
+  .ai-delivery {
+    max-width: 900px;
+  }
+  .ai-delivery .heading {
+    max-width: 640px;
+    margin-bottom: 28px;
+  }
+  .ai-delivery .lead:first-child {
+    margin-top: 0;
+  }
+  .ai-delivery .lead:last-child {
+    margin-bottom: 0;
+  }
+  .ai-section-introduction {
+    max-width: 850px;
+  }
+  .ai-section-introduction .heading {
+    margin: 14px 0 18px;
+  }
+  .lead + .lead {
+    margin-top: 18px;
+  }
+  .ai-capability-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .ai-capability-card {
+    padding: 28px;
+    color: #43566b;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .ai-capability-card h3 {
+    margin: 0 0 16px;
+    color: #101d32;
+    font-family: 'Manrope', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .ai-capability-card p {
+    margin: 0;
+  }
+  .ai-delivery-section {
+    background: #f3f8fb;
+  }
+  .ai-cta .lead {
+    color: #d9e8f1;
+    margin: 0 0 24px;
+  }
+  .ai-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .all-services-link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .ai-actions a:focus-visible {
+    outline: 2px solid #00b3c6;
+    outline-offset: 4px;
+  }
+  @media (max-width: 900px) {
+    .ai-capability-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

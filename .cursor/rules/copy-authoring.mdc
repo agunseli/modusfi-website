@@ -1,0 +1,70 @@
+---
+description: Mandatory plain-language copy rules and minimal corrections for ModusFi
+alwaysApply: true
+---
+
+# Copy authoring
+
+Apply whenever writing or editing website copy, metadata, accessibility text or repository prose.
+Use British English. Preserve technical accuracy, approved claims and the user's explicit wording.
+These are house-style requirements, not a test of whether a human or AI wrote something.
+
+## Prohibited punctuation and patterns
+
+- Never use em dashes (Unicode U+2014), the HTML entities `&mdash;`, `&#8212;` or
+  `&#x2014;`, or an escape that renders the same character in authored copy.
+  Use a comma, full stop, colon or parentheses according to meaning. Do not substitute doubled
+  hyphens or a parenthetical en dash to imitate an em dash. Keep ordinary compound-word hyphens.
+- Do not use formulaic contrast as persuasion: “not just X, but Y”, “not only X but also Y”,
+  “this isn't about X, it's about Y”, or “X, not Y”. State the actual service or benefit directly.
+  Necessary factual distinctions and instructions remain valid.
+- Do not use self-answered rhetorical fragments such as “The result? ...” or “Why? Because ...”.
+  Write a complete statement instead. Genuine questions in forms and FAQs remain valid.
+- Do not add generic scene-setting such as “in today's rapidly evolving landscape”,
+  “in an increasingly digital world”, or “now more than ever”. Start with the subject.
+- Do not use canned signposts such as “it's worth noting”, “importantly”, “in conclusion”,
+  “in summary”, or “the bottom line” to pad paragraphs or repeat a section's message.
+- Do not use decorative metaphors or inflated filler such as “delve into”, “a rich tapestry”,
+  “a testament to”, “unlock potential”, “harness the power”, or “embark on a journey”.
+- Do not use vague promotional labels such as “game-changing”, “revolutionary”, “cutting-edge”,
+  “seamless”, “world-class”, or “best-in-class” in place of a specific, supported explanation.
+- Do not use “leverage”, “utilise”, “foster”, “underscore” or “pivotal” as ornamental substitutes
+  for direct words such as use, help, show or important. A literal technical meaning is valid.
+- Do not build repetitive paragraphs from identical openings, stacked transitions or repeated
+  three-part slogans. Use the structure the information needs. Meaningful lists of three items,
+  parallel navigation labels and established technical terms remain valid.
+- Do not add decorative emoji, excessive bold emphasis, invented quotations, or unsupported
+  superlatives, figures, client references or credentials.
+
+User-supplied or explicitly approved wording takes precedence over vocabulary and rhetorical
+preferences. Do not silently rewrite it to apply these preferences. The em-dash prohibition still
+applies unless the user explicitly asks to preserve that punctuation. Do not alter code identifiers,
+URLs, external quotations or data to enforce prose preferences; explain a material conflict.
+
+## Required correction workflow
+
+1. Inspect copy in the files involved in the task and shared copy they render. Before finishing,
+   search relevant source for U+2014 and encoded equivalents, and read the text for the patterns above.
+2. When a violation is found in existing authored copy, make the smallest grammatical correction
+   that removes it. Preserve meaning, factual distinctions, layout, links and approved terminology.
+   Do not rewrite whole sections or expand claims. Correct clear incidental violations in touched
+   copy; do not turn a scoped task into an unrelated site-wide rewrite.
+3. Read the revised sentence in context, format modified files and run the appropriate checks.
+4. Briefly report corrections to existing copy and where they were made. Do not ask for separate
+   permission for a minimal correction already required by this rule. Flag genuine ambiguity.
+
+## Research and interpretation
+
+Reviewed 9 November 2026. Research reports tendencies across corpora; individual words and
+punctuation do not establish authorship. The specific prohibitions above are ModusFi's editorial
+choices. They combine the user's preferences with research and plain-language guidance, rather
+than attributing every prohibition to a source.
+
+- [GOV.UK: Use clear language](https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-language/):
+  plain English, active voice, specific language and avoiding empty jargon.
+- [Microsoft: Use simple words, concise sentences](https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences):
+  precise words, consistent terms and removal of unnecessary wording and modifiers.
+- [Why Does ChatGPT “Delve” So Much? (COLING 2025)](https://arxiv.org/abs/2412.11385):
+  lexical overrepresentation in model output, including delve and underscore.
+- [Do LLMs write like humans? (PNAS)](https://doi.org/10.1073/pnas.2422455122):
+  grammatical and rhetorical variation across human and model writing and across genres.

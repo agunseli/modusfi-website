@@ -5,9 +5,16 @@ import type { Service } from '../data/services';
 interface Props {
   service: Service;
   summary?: string;
+  heading?: string;
+  heroLayout?: 'split' | 'reversed' | 'wide';
 }
 
-const { service, summary = service.summary } = Astro.props;
+const {
+  service,
+  summary = service.summary,
+  heading = service.title,
+  heroLayout = 'split',
+} = Astro.props;
 ---
 
 <BaseLayout title={service.title} description={summary}>
@@ -28,8 +35,23 @@ const { service, summary = service.summary } = Astro.props;
           </li>
         </ol>
       </nav>
-      <h1 class="service-title">{service.title}</h1>
-      <p>{summary}</p>
+      <div
+        class:list={[
+          'service-hero-content',
+          { 'service-hero-illustrated': Astro.slots.has('hero-visual') },
+          `service-hero-${heroLayout}`,
+        ]}
+      >
+        <div class="service-hero-copy">
+          <h1 class="service-title">{heading}</h1>
+          <p>{summary}</p>
+        </div>
+        {Astro.slots.has('hero-visual') && (
+          <div class="service-hero-visual">
+            <slot name="hero-visual" />
+          </div>
+        )}
+      </div>
     </div>
   </section>
 
@@ -101,6 +123,52 @@ const { service, summary = service.summary } = Astro.props;
   .service-actions a:focus-visible {
     outline: 2px solid #00b3c6;
     outline-offset: 4px;
+  }
+  .service-hero-illustrated {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .service-hero-wide {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .service-hero-wide .service-hero-copy {
+    max-width: 850px;
+  }
+  .service-hero-visual {
+    min-width: 0;
+  }
+  @media (min-width: 1001px) {
+    .service-hero-reversed .service-hero-visual {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .service-hero-reversed .service-hero-copy {
+      grid-column: 2;
+      grid-row: 1;
+    }
+  }
+  .service-hero-illustrated .service-title {
+    font-size: clamp(36px, 3.5vw, 49px);
+    margin-top: 0;
+  }
+  .service-hero-illustrated p {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+  @media (max-width: 1000px) {
+    .service-hero-illustrated {
+      grid-template-columns: 1fr;
+      gap: 42px;
+    }
+    .service-hero-visual {
+      max-width: 560px;
+    }
+    .service-hero-wide .service-hero-visual {
+      max-width: none;
+    }
   }
   .service-title {
     overflow-wrap: anywhere;
