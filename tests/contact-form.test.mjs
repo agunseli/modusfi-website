@@ -10,7 +10,11 @@ const source = ts.transpileModule(
 ).outputText;
 
 // Exercise the browser controller with controllable security and network boundaries.
-function setup({ enabled = true, fetch = async () => Response.json({ success: true }) } = {}) {
+function setup({
+  enabled = true,
+  verificationWidth = 480,
+  fetch = async () => Response.json({ success: true }),
+} = {}) {
   const listeners = {};
   const attributes = {};
   const fields = { disabled: true };
@@ -24,6 +28,13 @@ function setup({ enabled = true, fetch = async () => Response.json({ success: tr
   };
   let valid = true;
   let resets = 0;
+  let removedWidgets = 0;
+  let resizeCallback;
+  const verification = {
+    get clientWidth() {
+      return verificationWidth;
+    },
+  };
   let options;
   let script;
   const requests = [];
@@ -31,7 +42,12 @@ function setup({ enabled = true, fetch = async () => Response.json({ success: tr
     action: 'https://modusfi.io/api/contact',
     dataset: { enabled: String(enabled), sitekey: enabled ? 'test-key' : undefined },
     querySelector: (selector) =>
-      ({ fieldset: fields, 'button[type="submit"]': button, '#contact-status': status })[selector],
+      ({
+        fieldset: fields,
+        'button[type="submit"]': button,
+        '#contact-status': status,
+        '#contact-verification': verification,
+      })[selector],
     addEventListener: (name, handler) => {
       listeners[name] = handler;
     },
@@ -57,6 +73,9 @@ function setup({ enabled = true, fetch = async () => Response.json({ success: tr
     reset: () => {
       options.callback('fresh-token');
     },
+    remove: () => {
+      removedWidgets++;
+    },
   };
   vm.runInNewContext(source, {
     document: {
@@ -80,6 +99,12 @@ function setup({ enabled = true, fetch = async () => Response.json({ success: tr
       }
     },
     AbortSignal,
+    ResizeObserver: class {
+      constructor(callback) {
+        resizeCallback = callback;
+      }
+      observe() {}
+    },
     fetch: async (...args) => {
       requests.push(args);
       return fetch(...args);
@@ -89,6 +114,16 @@ function setup({ enabled = true, fetch = async () => Response.json({ success: tr
   return {
     fields,
     button,
+    get widgetSize() {
+      return options?.size;
+    },
+    get removedWidgets() {
+      return removedWidgets;
+    },
+    resize: (width) => {
+      verificationWidth = width;
+      resizeCallback?.();
+    },
     status,
     values,
     requests,
@@ -210,4 +245,45 @@ test('expired and failed verification disable sending', () => {
   page.failSecurity();
   assert.equal(page.button.disabled, true);
   assert.match(page.status.textContent, /unavailable/);
+});
+
+test('verification fits the form width and a size change invalidates the previous token', async () => {
+  const page = setup();
+  assert.equal(page.widgetSize, 'normal');
+  page.verify();
+  page.resize(250);
+  assert.equal(page.widgetSize, 'compact');
+  assert.equal(page.removedWidgets, 1);
+  assert.equal(page.button.disabled, true);
+  await page.submit();
+  assert.equal(page.requests.length, 0);
+  page.verify();
+  page.resize(280);
+  assert.equal(page.removedWidgets, 1);
+  assert.equal(page.button.disabled, false);
+  page.resize(300);
+  assert.equal(page.widgetSize, 'normal');
+  assert.equal(page.button.disabled, true);
+});
+
+test('narrow forms start compact and resizing during submission waits for completion', async () => {
+  let finish;
+  const page = setup({
+    verificationWidth: 220,
+    fetch: () =>
+      new Promise((resolve) => {
+        finish = resolve;
+      }),
+  });
+  assert.equal(page.widgetSize, 'compact');
+  page.verify();
+  const pending = page.submit();
+  page.resize(480);
+  assert.equal(page.widgetSize, 'compact');
+  assert.equal(page.removedWidgets, 0);
+  finish(Response.json({ success: true }));
+  await pending;
+  assert.equal(page.widgetSize, 'normal');
+  assert.equal(page.button.disabled, true);
+  assert.match(page.status.textContent, /Thank you/);
 });

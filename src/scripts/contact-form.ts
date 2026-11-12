@@ -1,6 +1,7 @@
 interface Turnstile {
   render(container: string, options: Record<string, unknown>): string;
   reset(widget: string): void;
+  remove(widget: string): void;
 }
 
 const form = document.querySelector<HTMLFormElement>('#contact-form');
@@ -9,10 +10,13 @@ if (form) {
   const fields = form.querySelector('fieldset')!;
   const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
   const status = form.querySelector<HTMLElement>('#contact-status')!;
+  const verification = form.querySelector<HTMLElement>('#contact-verification')!;
   let sending = false;
   let token = '';
   let widget: string | undefined;
   let turnstile: Turnstile | undefined;
+  let widgetSize: 'normal' | 'compact' | undefined;
+  let updateWidgetSize: (() => void) | undefined;
 
   const announce = (message: string, focus = false) => {
     status.textContent = message;
@@ -93,6 +97,7 @@ if (form) {
       button.textContent = 'Send enquiry →';
       form.removeAttribute('aria-busy');
       if (widget !== undefined) turnstile?.reset(widget);
+      updateWidgetSize?.();
     }
   });
 
@@ -111,34 +116,49 @@ if (form) {
     script.addEventListener('load', () => {
       turnstile = (window as Window & { turnstile?: Turnstile }).turnstile;
       if (!turnstile) return unavailable();
-      try {
-        widget = turnstile.render('#contact-verification', {
-          sitekey: form.dataset.sitekey,
-          action: 'contact',
-          theme: 'light',
-          size: 'compact',
-          callback: (value: string) => {
-            token = value;
-            button.disabled = sending;
-            if (
-              !sending &&
-              (status.textContent === 'Loading the security check…' ||
-                status.textContent === 'The security check expired. Please complete it again.')
-            )
-              announce('');
-          },
-          'expired-callback': () => {
-            token = '';
-            button.disabled = true;
-            announce('The security check expired. Please complete it again.');
-          },
-          'error-callback': unavailable,
-          'timeout-callback': unavailable,
-          'unsupported-callback': unavailable,
-        });
-      } catch {
-        unavailable();
-      }
+      updateWidgetSize = () => {
+        const size = verification.clientWidth >= 300 ? 'normal' : 'compact';
+        if (size === widgetSize || sending) return;
+
+        // Size changes require a fresh widget and token; never reuse verification from a removed one.
+        token = '';
+        button.disabled = true;
+        try {
+          if (widget !== undefined) {
+            turnstile!.remove(widget);
+            widget = undefined;
+          }
+          widget = turnstile!.render('#contact-verification', {
+            sitekey: form.dataset.sitekey,
+            action: 'contact',
+            theme: 'light',
+            size,
+            callback: (value: string) => {
+              token = value;
+              button.disabled = sending;
+              if (
+                !sending &&
+                (status.textContent === 'Loading the security check…' ||
+                  status.textContent === 'The security check expired. Please complete it again.')
+              )
+                announce('');
+            },
+            'expired-callback': () => {
+              token = '';
+              button.disabled = true;
+              announce('The security check expired. Please complete it again.');
+            },
+            'error-callback': unavailable,
+            'timeout-callback': unavailable,
+            'unsupported-callback': unavailable,
+          });
+          widgetSize = size;
+        } catch {
+          unavailable();
+        }
+      };
+      updateWidgetSize();
+      new ResizeObserver(() => updateWidgetSize?.()).observe(verification);
     });
     document.head.append(script);
   }
