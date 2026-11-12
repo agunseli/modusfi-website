@@ -82,11 +82,11 @@ const enabled = import.meta.env.PUBLIC_CONTACT_FORM_ENABLED === 'true' && Boolea
             <label for="website">Leave this field empty</label>
             <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
           </div>
-          <div id="contact-verification"></div>
           <p id="contact-privacy" class="muted contact-note">
-            We will use your details to respond to your enquiry. Read our
+            We will use your details to respond to your enquiry. Read our{' '}
             <a href="/privacy">privacy notice</a>.
           </p>
+          <div id="contact-verification"></div>
           <button type="submit" class="btn btn-dark" disabled>
             Send enquiry <span aria-hidden="true">→</span>
           </button>
@@ -141,6 +141,9 @@ const enabled = import.meta.env.PUBLIC_CONTACT_FORM_ENABLED === 'true' && Boolea
     font-size: 13px;
     line-height: 1.7;
     margin-bottom: 20px;
+  }
+  #contact-verification {
+    margin-top: 24px;
   }
   #contact-privacy {
     margin-top: 20px;
