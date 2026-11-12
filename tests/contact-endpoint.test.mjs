@@ -75,7 +75,7 @@ test('only verified requests send a fixed-recipient plain-text email', async () 
   assert.equal(app.calls.length, 2);
   const mail = JSON.parse(app.calls[1].options.body);
   assert.equal(mail.To, 'recipient@example.com');
-  assert.equal(mail.From, 'website@modusfi.io');
+  assert.equal(mail.From, 'ModusFi Enquiries <website@modusfi.io>');
   assert.equal(mail.ReplyTo, 'visitor@example.com');
   assert.match(mail.TextBody, /Name: Example\nEmail: visitor@example.com\n\nProject/);
   assert.equal(mail.TrackOpens, false);
