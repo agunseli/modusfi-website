@@ -154,7 +154,7 @@ export async function onRequest({
         'X-Postmark-Server-Token': env.POSTMARK_SERVER_TOKEN,
       },
       body: JSON.stringify({
-        From: env.CONTACT_FROM_EMAIL,
+        From: `ModusFi Enquiries <${env.CONTACT_FROM_EMAIL}>`,
         To: env.CONTACT_TO_EMAIL,
         ReplyTo: email,
         Subject: 'New ModusFi website enquiry',
