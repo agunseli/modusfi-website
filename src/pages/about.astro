@@ -5,7 +5,12 @@ import alisanPortrait from '../assets/founders/alisan-gunseli.png';
 import gerryPortrait from '../assets/founders/gerry-griffin.png';
 
 const founders = [
-  { name: 'Alişan Günseli', role: 'Technology Lead', portrait: alisanPortrait, portraitScale: 1 },
+  {
+    name: 'Alişan Günseli',
+    role: 'Technology Lead',
+    portrait: alisanPortrait,
+    portraitScale: 0.96,
+  },
   {
     name: 'Gerry Griffin',
     role: 'Customer Relations',
@@ -72,7 +77,14 @@ const founders = [
       <div class="founders-introduction">
         <div class="eyebrow">Our founders</div>
         <h2 id="founders-heading" class="heading">
-          The people behind ModusFi
+          The people behind{' '}
+          <img
+            class="founders-wordmark"
+            src="/images/logo-light.svg"
+            alt="ModusFi"
+            width="466"
+            height="132"
+          />
         </h2>
       </div>
       <div class="founders-grid">
@@ -100,6 +112,12 @@ const founders = [
   }
   .founders-introduction .heading {
     margin: 14px 0 0;
+  }
+  .founders-wordmark {
+    display: inline-block;
+    width: auto;
+    height: 1.15em;
+    vertical-align: -0.16em;
   }
   .founders-grid {
     display: grid;
